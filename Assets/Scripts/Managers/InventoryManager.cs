@@ -52,7 +52,6 @@ public class InventoryManager : MonoBehaviour
     public void InventoryUpdate()
     {
         MouseItemTracking();
-        InteractWithSelectedItem();
     }
 
     void MouseItemTracking()
@@ -78,9 +77,19 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void InteractWithSelectedItem()
+    public GameObject GetSelectedGameObject()
     {
+        int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
+        GameObject currentSelected = hotbarSlots[id].gameObject.GetComponent<Slot>().item.prefab;
 
+        return currentSelected;
+    }
+
+    public void RemoveItemFromHotbar(int amount)
+    {
+        int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
+
+        RemoveItem(hotbarSlots[id].gameObject.GetComponent<Slot>().item, amount, id);
     }
 
     void InitializeInventory()
@@ -204,8 +213,17 @@ public class InventoryManager : MonoBehaviour
         SyncHotBar();
     }
 
-    public void RemoveItem(Item item, int itemAmount)
+    public void RemoveItem(Item item, int itemAmount, int slotID)
     {
+        if(slotID > -1)
+        {
+            if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
+            {
+                currentSlot.SubAmountFromItem = itemAmount;
+                return;
+            }
+        }
+
         for(int i = 0; i < slots.Count; i++)
         {
             if(slots[i].TryGetComponent<Slot>(out Slot currentSlot))
@@ -216,7 +234,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         if(itemAmount <= currentSlot.amount)
                         {
-                            currentSlot.amount -= itemAmount;
+                            currentSlot.SubAmountFromItem = itemAmount;
                             return;
                         }
                     }
