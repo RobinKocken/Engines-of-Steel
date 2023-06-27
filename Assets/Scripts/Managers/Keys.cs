@@ -17,6 +17,7 @@ public class Keys : MonoBehaviour
     public KeyCode baseBackwardsKey;
     public KeyCode baseLeftKey;
     public KeyCode baseRightKey;
+    public KeyCode baseHandbrake;
     public KeyCode baseSwitchCamKey;
 
     [Header("UI Keys")]

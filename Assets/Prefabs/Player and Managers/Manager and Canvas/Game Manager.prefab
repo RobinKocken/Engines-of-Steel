@@ -78,12 +78,13 @@ MonoBehaviour:
   baseBackwardsKey: 115
   baseLeftKey: 97
   baseRightKey: 100
+  baseHandbrake: 116
   baseSwitchCamKey: 118
   journalKey: 106
   inventoryKey: 9
   mapKey: 109
   optionKey: 27
-  previousSelect: 0
-  nextSelect: 0
+  previousSelect: 272
+  nextSelect: 51
   interactionKey: 102
   buildKey: 98

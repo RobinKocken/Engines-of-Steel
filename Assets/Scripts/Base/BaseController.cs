@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 public class BaseController : MonoBehaviour
 {
     public GameManager gameManager;
+    public BasePickUp basePickUp;
 
     public Animator animator;
 
@@ -13,6 +14,9 @@ public class BaseController : MonoBehaviour
     public Transform player;
     public Transform respawnPoint;
     public Transform wheel;
+
+    public Transform leverLeft;
+    public Transform leverRight;
 
     [Header("Base Movement")]
     public float maxForwardSpeed;
@@ -71,7 +75,7 @@ public class BaseController : MonoBehaviour
             player.transform.position = respawnPoint.position;
     }
 
-    public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kCamSwitch, KeyCode kInteraction)
+    public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kHandbrake , KeyCode kCamSwitch, KeyCode kInteraction)
     {
         if(Input.GetKeyDown(kForward))
             iForward = 1;

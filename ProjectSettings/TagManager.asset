@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Building
   - GameManager
+  - Base
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Ground
   - Interactable
   - Volume
-  - 
+  - PickUp
   - 
   - 
   - 

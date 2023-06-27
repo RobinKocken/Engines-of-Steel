@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
                 }
             case PlayerState.station:
                 {
-                    baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseSwitchCamKey, keys.interactionKey);
-
+                    baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseHandbrake, keys.baseSwitchCamKey, keys.interactionKey);
+                
                     break;
                 }
             case PlayerState.ui:
@@ -161,13 +161,9 @@ public class GameManager : MonoBehaviour
                 }
             case PlayerState.build:
                 {
-                    CursorModeConfined();
-
                     oldPlayerPos = playerController.gameObject.transform.localPosition;
                     playerController.transform.parent = baseBuildingBlueprint.transform;
                     playerController.gameObject.transform.localPosition = oldPlayerPos;
-
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
                     break;
                 }
         }

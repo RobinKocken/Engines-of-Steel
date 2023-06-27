@@ -60,6 +60,9 @@ public class CanvasManager : MonoBehaviour
 
                 uiManager.gameManager = gameManager;
 
+                BaseController baseController = GameObject.FindGameObjectWithTag("Base").GetComponent<BaseController>();
+                baseController.basePickUp.inventoryManager = gameManager.inventoryManager;
+
                 break;
             }
         }

@@ -23,4 +23,9 @@ public class ItemPickUp : MonoBehaviour, IInteractable
         if(destroyThisObject)
             Destroy(gameObject);
     }
+
+    public void DestroyItem()
+    {
+        Destroy(gameObject);
+    }
 }

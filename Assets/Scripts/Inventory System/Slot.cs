@@ -31,6 +31,11 @@ public class Slot : MonoBehaviour
         {
             amount -= value;
             currentAmountText.text = amount.ToString();
+
+            if(amount == 0)
+            {
+                DeleteItem();
+            }
         }        
     }
 
