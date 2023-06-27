@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerCamera;
 
+    public Vector3 oldPlayerPos;
+    public GameObject baseBuildingBlueprint;
     void Awake()
     {
         if (SaveSystem.instance != null)
@@ -63,50 +65,50 @@ public class GameManager : MonoBehaviour
     // State of the Player //
     void StatePlayer()
     {
-        switch(playerState)
+        switch (playerState)
         {
             case PlayerState.player:
-            {
-                InputForSwitchStatePlayer();
-                playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
-                raycastController.GetInteractionKeyInput(keys.interactionKey);
-                inventoryManager.PlayerUpdate();
+                {
+                    InputForSwitchStatePlayer();
+                    playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
+                    raycastController.GetInteractionKeyInput(keys.interactionKey);
+                    inventoryManager.PlayerUpdate();
 
-                break;
-            }
+                    break;
+                }
             case PlayerState.station:
-            {
-                baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseSwitchCamKey, keys.interactionKey);
+                {
+                    baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseSwitchCamKey, keys.interactionKey);
 
-                break;
-            }
+                    break;
+                }
             case PlayerState.ui:
-            {
-                if(uiManager.internalUIState != UIManager.InternalUIState.none)
                 {
-                    uiManager.InternalUIUpdate(keys.journalKey, keys.inventoryKey, keys.mapKey, keys.optionKey);
-                    break;
-                }
-                else if(uiManager.externalUIState != UIManager.ExternalUIState.none)
-                {
-                    uiManager.ExternalUIUpdate(keys.interactionKey);
-                    break;
-                }
+                    if (uiManager.internalUIState != UIManager.InternalUIState.none)
+                    {
+                        uiManager.InternalUIUpdate(keys.journalKey, keys.inventoryKey, keys.mapKey, keys.optionKey);
+                        break;
+                    }
+                    else if (uiManager.externalUIState != UIManager.ExternalUIState.none)
+                    {
+                        uiManager.ExternalUIUpdate(keys.interactionKey);
+                        break;
+                    }
 
-                break;
-            }
+                    break;
+                }
             case PlayerState.build:
-            {
-                InputForSwitchStatePlayer();
-                playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
-
-                // Delete Later //
-                if(buildManager != null)
                 {
-                    buildManager.BuildInput();
+                    InputForSwitchStatePlayer();
+                    playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
+
+                    // Delete Later //
+                    if (buildManager != null)
+                    {
+                        buildManager.BuildInput();
+                    }
+                    break;
                 }
-                break;
-            }
         }
     }
 
@@ -115,75 +117,84 @@ public class GameManager : MonoBehaviour
     {
         playerState = pPlayerState;
 
-        switch(playerState)
+        switch (playerState)
         {
             case PlayerState.player:
-            {
-                CursorModeLocked();
-
-                uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
-                uiManager.Player(true);
-                break;
-            }
+                {
+                    CursorModeLocked();
+                    if(oldPlayerPos != null)
+                    {
+                        oldPlayerPos = playerController.gameObject.transform.localPosition;
+                        playerController.transform.parent = baseController.transform;
+                        playerController.gameObject.transform.localPosition = oldPlayerPos;
+                    }
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
+                    uiManager.Player(true);
+                    break;
+                }
             case PlayerState.station:
-            {
-                CursorModeLocked();
-                playerController.StopMovement();
+                {
+                    CursorModeLocked();
+                    playerController.StopMovement();
 
-                uiManager.Player(false);
-                break;
-            }
+                    uiManager.Player(false);
+                    break;
+                }
             case PlayerState.ui:
-            {
-                CursorModeConfined();
-                playerController.StopMovement();
+                {
+                    CursorModeConfined();
+                    playerController.StopMovement();
 
-                // Check which UI Button is pressed to Change to the correct UI State //
-                if(Input.GetKeyDown(keys.journalKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
-                else if(Input.GetKeyDown(keys.inventoryKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
-                else if(Input.GetKeyDown(keys.mapKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
-                else if(Input.GetKeyDown(keys.optionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none);
-                else if(Input.GetKeyDown(keys.interactionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm); 
+                    // Check which UI Button is pressed to Change to the correct UI State //
+                    if (Input.GetKeyDown(keys.journalKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.inventoryKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.mapKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.optionKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.interactionKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);
 
-                break;
-            }
+                    break;
+                }
             case PlayerState.build:
-            {
-                CursorModeConfined();
+                {
+                    CursorModeConfined();
 
-                uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
-                break;
-            }
+                    oldPlayerPos = playerController.gameObject.transform.localPosition;
+                    playerController.transform.parent = baseBuildingBlueprint.transform;
+                    playerController.gameObject.transform.localPosition = oldPlayerPos;
+
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
+                    break;
+                }
         }
     }
 
     void InputForSwitchStatePlayer()
     {
         // Check if an UI is pressed and change to UI State //
-        if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.inventoryKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
-        { 
+        if (Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.inventoryKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
+        {
             // Change only if PLayer State is Player //
-            if(playerState == PlayerState.player)
+            if (playerState == PlayerState.player)
                 SwitchStatePlayer(PlayerState.ui);
         }
 
         // Check if Build Button is pressed //
-        if(Input.GetKeyDown(keys.buildKey))
+        if (Input.GetKeyDown(keys.buildKey))
         {
-            if(playerState == PlayerState.player)
+            if (playerState == PlayerState.player)
                 SwitchStatePlayer(PlayerState.build);
-            else if(playerState == PlayerState.build)
+            else if (playerState == PlayerState.build)
                 SwitchStatePlayer(PlayerState.player);
-        }       
+        }
     }
 
     void CursorModeLocked()
-    { 
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -194,15 +205,15 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        
+
         OptionManager.playerMouseSens = 0;
     }
 
     public bool CheckIfKeyCodeIsTrue(KeyCode key)
     {
-        foreach(KeyCode kCode in Enum.GetValues(typeof(KeyCode)))
+        foreach (KeyCode kCode in Enum.GetValues(typeof(KeyCode)))
         {
-            if(kCode == key)
+            if (kCode == key)
             {
                 Debug.Log($"{kCode}");
                 return true;

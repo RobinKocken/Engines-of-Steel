@@ -2007,11 +2007,11 @@ Transform:
   - {fileID: 2711965364020667318}
   - {fileID: 3804874073978268691}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6905769892756943367
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2025,6 +2025,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -3352,7 +3353,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6602118243825281305}
-  - component: {fileID: 7748948324105537386}
   - component: {fileID: 1669766397}
   - component: {fileID: 1669766398}
   m_Layer: 0
@@ -3377,45 +3377,6 @@ Transform:
   m_Father: {fileID: 299574416368517786}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7748948324105537386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2190387568605384150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5918ef73d2d0ca24ab6ce50fc3b274ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  buildingParent: {fileID: 6602118243825281305}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  objects:
-  - {fileID: 1703848034163224179, guid: 5e3edd7fb159bea4fa695b25e4a09f9c, type: 3}
-  - {fileID: 4379054519489821858, guid: 8a9903cfd1e8c3241bc2464bdb37e5b4, type: 3}
-  - {fileID: 699303020179694208, guid: 589a3bef44b985547957a7a50f23b471, type: 3}
-  - {fileID: 4502788631259682647, guid: beda60679fcc9cf4eab1d2bb48304448, type: 3}
-  - {fileID: 8189245398819224179, guid: f29048ef646643e4a88feffaea271771, type: 3}
-  - {fileID: 7280856209840597724, guid: 8953ad313d4b1484cb61bc2b46cea3f8, type: 3}
-  - {fileID: 2125343298009274070, guid: 80bccf8f2776fa64cb0fb5ce509d138f, type: 3}
-  - {fileID: 5345726723627908660, guid: 2796e6477f8c4bd46a80c68bc7850034, type: 3}
-  - {fileID: 5099498772590394454, guid: 2fa6dfbb654c4ad478d4c0924ef879fc, type: 3}
-  - {fileID: 7590099363741434131, guid: 796d3f26dcf87ff45af0cc35de52fb30, type: 3}
-  - {fileID: 8407773696967422573, guid: 58650b8747449a94a84aa192c2e1a511, type: 3}
-  - {fileID: 3936561359288333745, guid: 5c4fafe68101810419139fa551404927, type: 3}
-  - {fileID: 8156230284482626634, guid: 584a2c2085cef6949a8c5204eb662667, type: 3}
-  - {fileID: 4090357881655419753, guid: c9412bf54771ed944aa39ee9347929a7, type: 3}
-  pendingObj: {fileID: 0}
-  rotateAmount: 90
-  canPlace: 0
-  offset: 0.5
-  gridSize: 1.57
-  gridHeight: 2
-  yPos: 0
 --- !u!114 &1669766397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4013,6 +3974,8 @@ MonoBehaviour:
   stopNaNs: 0
   taaSharpenStrength: 0.5
   TAAQuality: 1
+  taaSharpenMode: 0
+  taaRingingReduction: 0
   taaHistorySharpening: 0.35
   taaAntiFlicker: 0.5
   taaMotionVectorRejection: 0
@@ -4063,6 +4026,7 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 0
     sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 0
   renderingPathCustomFrameSettingsOverrideMask:
