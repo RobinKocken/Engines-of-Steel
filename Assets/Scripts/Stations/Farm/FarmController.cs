@@ -80,7 +80,9 @@ public class FarmController : MonoBehaviour, IInteractable
     //harvest the crop and put it in the inventory
     public void HarvestCrops()
     {
-        
+        Destroy(currentCrop);
+        currentCrop = null;
+        farmManager.gameManager.inventoryManager.AddItem(farmManager.gameManager.inventoryManager.itemHolders[cropToGrow+5], 4, -1);
     }
 
 }

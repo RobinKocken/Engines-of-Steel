@@ -16,18 +16,28 @@ public class SelectionManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        //check if the player is in buildmode and if they press the left mouse button
+        if(Input.GetMouseButtonDown(0) && gameManager.playerState == GameManager.PlayerState.build)
         {
             Ray ray = gameManager.playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 1000))
             {
-                if(hit.collider.gameObject.CompareTag("Building") && gameObject.GetComponent<BuildManager>().pendingObj == null)
+                //check if the object hit has a CheckPlacement component
+                hit.transform.gameObject.TryGetComponent(out CheckPlacement component);
+                if(component)
                 {
-                    Select(hit.collider.gameObject);
+                    //if it has the component also check if it has the right tag and if no other object is already been selected
+                    if (hit.collider.gameObject.CompareTag("Building") && gameObject.GetComponent<BuildManager>().pendingObj == null)
+                    {
+                        //select object
+                        Select(hit.collider.gameObject);
+                    }
                 }
+                
             }
         }
+        //if an object is selected and right mouse button is pressed deselect the selected object
         if(Input.GetMouseButtonDown(1) && selectedObj != null)
         {
             Deselect();
@@ -44,7 +54,7 @@ public class SelectionManager : MonoBehaviour
         {
             Deselect();
         }
-        
+        //toggle menu to show selected object info
         Outline outline = target.GetComponent<Outline>();
         if(outline == null)
         {

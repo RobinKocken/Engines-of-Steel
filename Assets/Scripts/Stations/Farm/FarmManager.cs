@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class FarmManager : MonoBehaviour
 {
+    public GameManager gameManager;
     public UnityEngine.UIElements.Button button;
     private FarmController currentFarm;
     public GameObject farmUI;

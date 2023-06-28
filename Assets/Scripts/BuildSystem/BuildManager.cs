@@ -83,12 +83,20 @@ public class BuildManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //update objects position to screenpoint posistion
-        if(Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
+        if(gameManager.playerState == GameManager.PlayerState.build)
         {
-            pos = new Vector3(hit.point.x, hit.point.y + offset , hit.point.z);
-            pos -= transform.position;
+            gameManager.inventoryManager.GetSelectedGameObject().TryGetComponent<CheckPlacement>(out CheckPlacement component);
+            if(component)
+            {
+                //update objects position to screenpoint posistion
+                if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
+                {
+                    pos = new Vector3(hit.point.x, hit.point.y + offset, hit.point.z);
+                    pos -= transform.position;
+                }
+            }
         }
+        
     }
 
     //snap cords of object to nearest int
