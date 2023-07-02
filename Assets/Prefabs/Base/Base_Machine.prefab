@@ -2008,7 +2008,7 @@ Transform:
   - {fileID: 2711965364020667318}
   - {fileID: 3804874073978268691}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6905769892756943367
 Animator:
@@ -2392,7 +2392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3322422404655709066}
   - component: {fileID: 7844691358365315046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2409,7 +2409,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 299574416368517786}
   m_RootOrder: -1
@@ -2427,7 +2427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
-  distance: 0
+  sphereRadius: 25
+  rayDistance: 5
   mask:
     serializedVersion: 2
     m_Bits: 512
@@ -3457,6 +3458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa250313981c0c498824e923ddb3ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   farmUI: {fileID: 0}
   progressUI: {fileID: 0}
   progressSlider: {fileID: 0}
