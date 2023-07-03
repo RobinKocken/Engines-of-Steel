@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 21
   itemName: Wall Roof
   maxStack: 32
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  prefab: {fileID: 3936561359288333745, guid: 5c4fafe68101810419139fa551404927, type: 3}

@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 19
   itemName: Floor
   maxStack: 32
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  prefab: {fileID: 4502788631259682647, guid: beda60679fcc9cf4eab1d2bb48304448, type: 3}
