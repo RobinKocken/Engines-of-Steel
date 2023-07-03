@@ -55,7 +55,11 @@ public class Slot : MonoBehaviour
         this.amount = amount;
 
         iconRenderer.gameObject.SetActive(true);
-        iconRenderer.sprite = item.icon;
+
+        if(item.icon != null)
+        {
+            iconRenderer.sprite = item.icon;
+        }
 
         currentAmountText.gameObject.SetActive(true);
         currentAmountText.text = this.amount.ToString();

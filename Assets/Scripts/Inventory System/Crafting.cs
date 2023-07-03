@@ -5,12 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Crafting", menuName = "Crafting", order = 3)]
 public class Crafting : ScriptableObject
 {
+    public Requirements[] requirements;
+
     [System.Serializable]
-    public struct Hello
+    public struct Requirements
     {
-        public int hi;
-        public float de;
+        public Item requiredItem;
+        public int requiredAmount;
     }
 
-    public Hello[] hello;
+    public Item resultItem;
+    public int resultAmount;
 }

@@ -42,9 +42,6 @@ public class InventoryManager : MonoBehaviour
         InitializeInventory();
         SetSlotID();
         SyncHotBar();
-
-
-        GameObject je = GetSelectedGameObject();
     }
     
     public void PlayerUpdate()
@@ -82,8 +79,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject GetSelectedGameObject()
     {
         int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
-
-        Debug.Log(id);
 
         if(slots[id].gameObject.GetComponent<Slot>().item == null)
         {
@@ -156,9 +151,12 @@ public class InventoryManager : MonoBehaviour
         {
             if(slots[i].TryGetComponent<Slot>(out Slot currentSlot))
             {
-                if(currentSlot.item.name == item.name)
+                if(currentSlot.item != null)
                 {
-                    totalAmount += currentSlot.amount;
+                    if(currentSlot.item.itemID == item.itemID)
+                    {
+                        totalAmount += currentSlot.amount;
+                    }
                 }
             }
         }

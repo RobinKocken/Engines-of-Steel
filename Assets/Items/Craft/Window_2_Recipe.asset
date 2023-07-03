@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bca490c52f4199f409ef2040a5b0703f, type: 3}
-  m_Name: Crafting
+  m_Name: Window_2_Recipe
   m_EditorClassIdentifier: 
-  hello:
-  - hi: 0
-    de: 0
+  requirements:
+  - requiredItem: {fileID: 11400000, guid: 8270e4ae97367864db2087574e3d3507, type: 2}
+    requiredAmount: 10
+  - requiredItem: {fileID: 11400000, guid: 6b9482c585c4cbe478aaff3a9e99f8e1, type: 2}
+    requiredAmount: 10
+  resultItem: {fileID: 11400000, guid: 45c8ede91baa0e64dbc2a505fe2e4c0a, type: 2}
+  resultAmount: 1
