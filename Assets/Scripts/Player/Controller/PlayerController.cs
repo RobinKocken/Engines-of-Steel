@@ -176,6 +176,20 @@ public class PlayerController : MonoBehaviour
         iRight = 0;
     }
 
+    public void FreezePlayer()
+    {
+        rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        transform.localEulerAngles = Vector3.zero;
+    }
+
+    public void UnfreezePlayer()
+    {
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        transform.localEulerAngles = Vector3.zero;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
