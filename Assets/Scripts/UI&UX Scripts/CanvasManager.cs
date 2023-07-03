@@ -9,6 +9,8 @@ public class CanvasManager : MonoBehaviour
     public UIManager uiManager;
     public InventoryManager inventoryManager;
 
+    public static CanvasManager canvasManager;
+
     public enum CanvasState
     {
         mainMenu,
@@ -22,6 +24,15 @@ public class CanvasManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);    
+    }
+
+    void Start()
+    {
+        if(canvasManager)
+        {
+            Destroy(canvasManager.gameObject);
+        }
+        canvasManager = this;
     }
 
     private void OnEnable()
