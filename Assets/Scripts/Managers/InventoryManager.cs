@@ -42,6 +42,9 @@ public class InventoryManager : MonoBehaviour
         InitializeInventory();
         SetSlotID();
         SyncHotBar();
+
+
+        GameObject je = GetSelectedGameObject();
     }
     
     public void PlayerUpdate()
@@ -72,7 +75,6 @@ public class InventoryManager : MonoBehaviour
             playerHotbarSlots[Mathf.Abs((int)oldScroll)].GetComponent<Image>().color = defaultColor;
             playerHotbarSlots[Mathf.Abs((int)scrollWheel)].GetComponent<Image>().color = selectedColor;
             selectedSlot = hotbarSlots[Mathf.Abs((int)scrollWheel)].GetComponent<Slot>();
-
             oldScroll = scrollWheel;
         }
     }
@@ -80,7 +82,15 @@ public class InventoryManager : MonoBehaviour
     public GameObject GetSelectedGameObject()
     {
         int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
-        GameObject currentSelected = hotbarSlots[id].gameObject.GetComponent<Slot>().item.prefab;
+
+        Debug.Log(id);
+
+        if(slots[id].gameObject.GetComponent<Slot>().item == null)
+        {
+            return null;
+        }
+
+        GameObject currentSelected = slots[id].gameObject.GetComponent<Slot>().item.prefab;
 
         return currentSelected;
     }
