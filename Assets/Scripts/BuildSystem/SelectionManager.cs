@@ -38,7 +38,7 @@ public class SelectionManager : MonoBehaviour
             }
         }
         //if an object is selected and right mouse button is pressed deselect the selected object
-        if(Input.GetMouseButtonDown(1) && selectedObj != null)
+        if(Input.GetMouseButtonDown(1) && selectedObj != null && gameManager.playerState == GameManager.PlayerState.build)
         {
             Deselect();
         }

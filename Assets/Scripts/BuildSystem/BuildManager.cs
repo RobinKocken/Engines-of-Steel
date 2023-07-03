@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,10 +42,10 @@ public class BuildManager : MonoBehaviour
 
     public void BuildInput()
     {
-        if(pendingObj != null)
+        if (pendingObj != null)
         {
             //check if grid is on, and snap objects if its on
-            if(gridOn)
+            if (gridOn)
             {
                 pendingObj.transform.localPosition = new Vector3(
                 RoundToNearestGrid(pos.x),
@@ -56,20 +57,20 @@ public class BuildManager : MonoBehaviour
                 pendingObj.transform.localPosition = new Vector3(pos.x, yPos + offset, pos.z);
             }
 
-            if(Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 yPos += gridHeight;
             }
-            if(Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 RotateObject();
             }
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 yPos -= gridHeight;
             }
 
-            if(Input.GetMouseButton(0) && canPlace)
+            if (Input.GetMouseButton(0) && canPlace)
             {
                 PlaceObject();
             }
@@ -83,10 +84,10 @@ public class BuildManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(gameManager.playerState == GameManager.PlayerState.build)
+        if (gameManager.playerState == GameManager.PlayerState.build)
         {
-            gameManager.inventoryManager.GetSelectedGameObject().TryGetComponent<CheckPlacement>(out CheckPlacement component);
-            if(component)
+            gameManager.inventoryManager.GetSelectedGameObject().TryGetComponent(out CheckPlacement component);
+            if (component)
             {
                 //update objects position to screenpoint posistion
                 if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
@@ -96,7 +97,7 @@ public class BuildManager : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     //snap cords of object to nearest int
@@ -111,5 +112,22 @@ public class BuildManager : MonoBehaviour
         }
         //pos = Mathf.RoundToInt(pos);
         return pos;
+    }
+
+    public void TransferBuildings()
+    {
+        Transform buildParent = gameManager.buildManager.transform;
+        Transform baseParent = gameManager.baseController.transform;
+
+        for (int bIndex = 0; bIndex < buildingParent.childCount; bIndex++)
+        {
+            int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
+            Vector3 _buildingPostistion = buildParent.GetChild(bIndex).transform.position;
+            Vector3 _buildingRotation = buildParent.GetChild(bIndex).transform.eulerAngles;
+
+            var newBuilding = Instantiate(this.objects[_buildingID], this.transform.position, Quaternion.identity, baseParent);
+            newBuilding.transform.position = _buildingPostistion;
+            newBuilding.transform.eulerAngles = _buildingRotation;
+        }
     }
 }
