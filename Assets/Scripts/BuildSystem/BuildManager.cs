@@ -40,53 +40,45 @@ public class BuildManager : MonoBehaviour
         pendingObj.transform.Rotate(Vector3.up, rotateAmount);
     }
 
-    public void BuildInput()
+    public void Update()
     {
-        if (pendingObj != null)
+        if (gameManager.playerState == GameManager.PlayerState.build)
         {
-            //check if grid is on, and snap objects if its on
-            if (gridOn)
+            if (pendingObj != null)
             {
                 pendingObj.transform.localPosition = new Vector3(
                 RoundToNearestGrid(pos.x),
                 yPos + offset,
                 RoundToNearestGrid(pos.z));
-            }
-            else
-            {
-                pendingObj.transform.localPosition = new Vector3(pos.x, yPos + offset, pos.z);
-            }
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                yPos += gridHeight;
-            }
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RotateObject();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                yPos -= gridHeight;
-            }
+                Debug.Log(pos);
 
-            if (Input.GetMouseButton(0) && canPlace)
-            {
-                PlaceObject();
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    yPos += gridHeight;
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    RotateObject();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    yPos -= gridHeight;
+                }
+
+                if (Input.GetMouseButton(0) && canPlace)
+                {
+                    PlaceObject();
+                }
             }
         }
     }
-
     void PlaceObject()
     {
         pendingObj = null;
         yPos = 0;
     }
 
-    private void Update()
-    {
-        gameManager.inventoryManager.Scrollbar();
-    }
     private void FixedUpdate()
     {
         if (gameManager.playerState == GameManager.PlayerState.build)
@@ -96,18 +88,24 @@ public class BuildManager : MonoBehaviour
             if (test != null)
             {
                 test.TryGetComponent(out CheckPlacement component);
-                
-                if (component != null && pendingObj == null)
+                if (Input.GetKeyDown(KeyCode.E) && pendingObj == null)
                 {
-                    Debug.Log(component);
-                    SelectObject(component.buildingID);
-                    
+                    if (component != null)
+                    {
+                        Debug.Log(component);
+                        SelectObject(component.buildingID);
+
+                    }
                 }
+
             }
             //update objects position to screenpoint posistion
-            if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
+            if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.transform.forward, out hit, 1000, layerMask))
             {
-                pos = new Vector3(hit.point.x, hit.point.y + offset, hit.point.z);
+                //Debug.Log(layerMask);
+                //Debug.Log(hit.transform.gameObject.name);
+                pos = hit.point;
+                pos.y += offset;
                 pos -= transform.position;
             }
         }

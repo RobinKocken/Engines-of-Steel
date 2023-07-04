@@ -103,11 +103,6 @@ public class GameManager : MonoBehaviour
                     InputForSwitchStatePlayer();
                     playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
 
-                    // Delete Later //
-                    if (buildManager != null)
-                    {
-                        buildManager.BuildInput();
-                    }
                     break;
                 }
         }
@@ -129,6 +124,8 @@ public class GameManager : MonoBehaviour
                         playerController.transform.parent = baseController.transform;
                         playerController.gameObject.transform.localPosition = oldPlayerPos;
                         playerController.transform.eulerAngles = oldPlayerRot;
+
+                        buildManager.TransferBuildings();
                     }
                     uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
                     uiManager.Player(true);
