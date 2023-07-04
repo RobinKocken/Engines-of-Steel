@@ -82,22 +82,35 @@ public class BuildManager : MonoBehaviour
         pendingObj = null;
         yPos = 0;
     }
+
+    private void Update()
+    {
+        gameManager.inventoryManager.Scrollbar();
+    }
     private void FixedUpdate()
     {
         if (gameManager.playerState == GameManager.PlayerState.build)
         {
-            gameManager.inventoryManager.GetSelectedGameObject().TryGetComponent(out CheckPlacement component);
-            if (component)
+            GameObject test = gameManager.inventoryManager.GetSelectedGameObject();
+
+            if (test != null)
             {
-                //update objects position to screenpoint posistion
-                if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
+                test.TryGetComponent(out CheckPlacement component);
+                
+                if (component != null && pendingObj == null)
                 {
-                    pos = new Vector3(hit.point.x, hit.point.y + offset, hit.point.z);
-                    pos -= transform.position;
+                    Debug.Log(component);
+                    SelectObject(component.buildingID);
+                    
                 }
             }
+            //update objects position to screenpoint posistion
+            if (Physics.Raycast(gameManager.playerCamera.transform.position, gameManager.playerCamera.GetComponent<RaycastController>().transform.forward, out hit, 1000, layerMask))
+            {
+                pos = new Vector3(hit.point.x, hit.point.y + offset, hit.point.z);
+                pos -= transform.position;
+            }
         }
-
     }
 
     //snap cords of object to nearest int

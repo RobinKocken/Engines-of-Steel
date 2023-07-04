@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    GameManager gameManager;
+    public GameManager gameManager;
     public GameObject selectedObj;
     public TextMeshProUGUI objText;
     public GameObject selectUI;

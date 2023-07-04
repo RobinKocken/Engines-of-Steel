@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void Scrollbar()
+    public void Scrollbar()
     {
         scrollWheel += Input.mouseScrollDelta.y;
         scrollWheel = Mathf.Clamp(scrollWheel, -playerHotbarSlots.Count + 1, 0);
@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject GetSelectedGameObject()
     {
-        int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
+        int id = playerHotbarSlots[Mathf.Abs((int)scrollWheel)].gameObject.GetComponent<Slot>().slotID;
 
         if(slots[id].gameObject.GetComponent<Slot>().item == null)
         {

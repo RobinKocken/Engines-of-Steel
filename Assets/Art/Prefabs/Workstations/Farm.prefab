@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildManager: {fileID: 0}
-  buildingID: 0
+  buildingID: 6
 --- !u!114 &-5688297543211641827
 MonoBehaviour:
   m_ObjectHideFlags: 0

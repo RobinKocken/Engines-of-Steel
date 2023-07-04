@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerCamera;
 
     public Vector3 oldPlayerPos;
+    public Vector3 oldPlayerRot;
     public GameObject baseBuildingBlueprint;
     void Awake()
     {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
             case PlayerState.station:
                 {
                     baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseHandbrake, keys.baseSwitchCamKey, keys.interactionKey);
-                
+
                     break;
                 }
             case PlayerState.ui:
@@ -120,60 +121,63 @@ public class GameManager : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.player:
-            {
-                CursorModeLocked();
-                if(oldPlayerPos != null)
+                {
+                    CursorModeLocked();
+                    if (oldPlayerPos != null)
+                    {
+                        oldPlayerPos = playerController.gameObject.transform.localPosition;
+                        playerController.transform.parent = baseController.transform;
+                        playerController.gameObject.transform.localPosition = oldPlayerPos;
+                        playerController.transform.eulerAngles = oldPlayerRot;
+                    }
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
+                    uiManager.Player(true);
+
+                    playerController.UnfreezePlayer();
+
+                    break;
+                }
+            case PlayerState.station:
+                {
+                    CursorModeLocked();
+                    playerController.StopMovement();
+
+                    uiManager.Player(false);
+
+                    playerController.FreezePlayer();
+
+                    break;
+                }
+            case PlayerState.ui:
+                {
+                    CursorModeConfined();
+                    playerController.StopMovement();
+
+                    // Check which UI Button is pressed to Change to the correct UI State //
+                    if (Input.GetKeyDown(keys.journalKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.inventoryKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.mapKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.optionKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none);
+                    else if (Input.GetKeyDown(keys.interactionKey))
+                        uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);
+
+                    playerController.FreezePlayer();
+
+                    break;
+                }
+            case PlayerState.build:
                 {
                     oldPlayerPos = playerController.gameObject.transform.localPosition;
-                    playerController.transform.parent = baseController.transform;
+                    oldPlayerRot = playerController.gameObject.transform.eulerAngles;
+                    playerController.transform.eulerAngles = Vector3.zero;
+                    playerController.transform.parent = baseBuildingBlueprint.transform;
                     playerController.gameObject.transform.localPosition = oldPlayerPos;
+                    break;
                 }
-                uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
-                uiManager.Player(true);
-
-                playerController.UnfreezePlayer();
-                    
-                break;
-            }
-            case PlayerState.station:
-            {
-                CursorModeLocked();
-                playerController.StopMovement();
-
-                uiManager.Player(false);
-
-                playerController.FreezePlayer();
-                    
-                break;
-            }
-            case PlayerState.ui:
-            {
-                CursorModeConfined();
-                playerController.StopMovement();
-
-                // Check which UI Button is pressed to Change to the correct UI State //
-                if (Input.GetKeyDown(keys.journalKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
-                else if (Input.GetKeyDown(keys.inventoryKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
-                else if (Input.GetKeyDown(keys.mapKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
-                else if (Input.GetKeyDown(keys.optionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none);
-                else if (Input.GetKeyDown(keys.interactionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);
-
-                playerController.FreezePlayer();
-
-                break;
-            }
-            case PlayerState.build:
-            {
-                oldPlayerPos = playerController.gameObject.transform.localPosition;
-                playerController.transform.parent = baseBuildingBlueprint.transform;
-                playerController.gameObject.transform.localPosition = oldPlayerPos;
-                break;
-            }
         }
     }
 
