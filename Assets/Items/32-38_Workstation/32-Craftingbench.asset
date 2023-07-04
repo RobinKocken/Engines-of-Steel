@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883cd4e2f9e238f40b584e2292affdc3, type: 3}
   m_Name: 32-Craftingbench
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: 
-  maxStack: 0
+  itemID: 32
+  itemName: Craftingbench
+  maxStack: 1
   icon: {fileID: 0}
   prefab: {fileID: 0}
