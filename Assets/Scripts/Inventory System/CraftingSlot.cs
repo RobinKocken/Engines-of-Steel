@@ -20,6 +20,8 @@ public class CraftingSlot : MonoBehaviour
         {
             currentAmount[i] = craftingTable.CheckIfCanCraft(crafting.requirements[i].requiredItem);
             craftingTable.SelectCraft(crafting, currentAmount);
+
         }
+            Debug.Log(crafting.resultItem.itemName);
     }
 }

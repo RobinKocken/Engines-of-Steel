@@ -22,7 +22,7 @@ public class BasePickUp : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Debug.DrawRay(transform.position, -transform.up * rayDistance);

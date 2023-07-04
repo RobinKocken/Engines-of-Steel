@@ -23,16 +23,15 @@ public class CanvasManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);    
-    }
-
-    void Start()
-    {
         if(canvasManager)
         {
-            Destroy(canvasManager.gameObject);
+            Destroy(gameObject);
         }
-        canvasManager = this;
+        else
+        {
+            canvasManager = this;
+            DontDestroyOnLoad(gameObject);    
+        }
     }
 
     private void OnEnable()

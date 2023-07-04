@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public GameManager gameManager;
     public InventoryManager inventoryManager;
 
+    public GameManager.PlayerState previousState;
+
     public enum InternalUIState
     {
         none,
@@ -35,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        SwitchStateUI(InternalUIState.none, ExternalUIState.none);
+        SwitchStateUI(InternalUIState.none, ExternalUIState.none, GameManager.PlayerState.player);
 
         animationUI.bar.GetComponent<Image>().color = animationUI.barColor;
 
@@ -76,12 +78,12 @@ public class UIManager : MonoBehaviour
                 // Check if Journal is already active, if active close Internal UI and if not then go to Journal State // 
                 if(internalUIState != InternalUIState.journal)
                 {
-                    SwitchStateUI(InternalUIState.journal, ExternalUIState.none);
+                    SwitchStateUI(InternalUIState.journal, ExternalUIState.none, previousState);
                 }
                 else
                 {
-                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
+                    gameManager.SwitchStatePlayer(previousState);
                 }
             }
 
@@ -91,12 +93,12 @@ public class UIManager : MonoBehaviour
                 // Check if Invnetory is already active, if active close Internal UI and if not then go to Invnetory State // 
                 if(internalUIState != InternalUIState.inventory)
                 {
-                    SwitchStateUI(InternalUIState.inventory, ExternalUIState.none);
+                    SwitchStateUI(InternalUIState.inventory, ExternalUIState.none, previousState);
                 }
                 else
                 {
-                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none,previousState);
+                    gameManager.SwitchStatePlayer(previousState);
                 }
             }
 
@@ -106,12 +108,12 @@ public class UIManager : MonoBehaviour
                 // Check if Map is already active, if active close Internal UI and if not then go to Map State // 
                 if(internalUIState != InternalUIState.map)
                 {
-                    SwitchStateUI(InternalUIState.map, ExternalUIState.none);
+                    SwitchStateUI(InternalUIState.map, ExternalUIState.none, previousState);
                 }
                 else
                 {
-                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
+                    gameManager.SwitchStatePlayer(previousState);
                 }
             }
 
@@ -121,8 +123,8 @@ public class UIManager : MonoBehaviour
         {
             if(Input.GetKeyDown(optionkey))
             {
-                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);                
+                SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
+                gameManager.SwitchStatePlayer(previousState);                
             }
         } 
     }
@@ -131,15 +133,17 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(interactionKey))
         {
-            SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
+            gameManager.SwitchStatePlayer(previousState);
         }
     }
 
-    public void SwitchStateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState)
+    public void SwitchStateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState, GameManager.PlayerState state)
     {
         internalUIState = iInternalUIState;
         externalUIState = eExternalUIState;
+
+        previousState = state;
 
         if(internalUIState != InternalUIState.none)
         {
@@ -244,7 +248,7 @@ public class UIManager : MonoBehaviour
 
     public void TopButtons(int stateValue)
     {
-        SwitchStateUI((InternalUIState)stateValue, ExternalUIState.none);
+        SwitchStateUI((InternalUIState)stateValue, ExternalUIState.none, previousState);
     }
 
     IEnumerator BarAnimation(int i)
