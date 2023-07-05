@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +29,7 @@ public class BuildManager : MonoBehaviour
     private Vector3 pos;
 
     private RaycastHit hit;
+    private List<GameObject> buildChanges = new List<GameObject>();
 
     public void SelectObject(int index)
     {
@@ -75,6 +78,7 @@ public class BuildManager : MonoBehaviour
     }
     void PlaceObject()
     {
+        buildChanges.Add(pendingObj.gameObject);
         pendingObj = null;
         yPos = 0;
     }
@@ -130,15 +134,25 @@ public class BuildManager : MonoBehaviour
         Transform buildParent = gameManager.buildManager.transform;
         Transform baseParent = gameManager.baseController.transform;
 
-        for (int bIndex = 0; bIndex < buildingParent.childCount; bIndex++)
+        for(int bIndex = 0; bIndex < buildChanges.Count; bIndex++)
         {
             int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
-            Vector3 _buildingPostistion = buildParent.GetChild(bIndex).transform.position;
-            Vector3 _buildingRotation = buildParent.GetChild(bIndex).transform.eulerAngles;
-
-            var newBuilding = Instantiate(this.objects[_buildingID], this.transform.position, Quaternion.identity, baseParent);
-            newBuilding.transform.position = _buildingPostistion;
-            newBuilding.transform.eulerAngles = _buildingRotation;
+            var newBuilding = Instantiate(buildChanges[bIndex], baseParent.transform.position, Quaternion.identity, baseParent);
+            newBuilding.transform.localPosition = buildChanges[bIndex].transform.position;
+            newBuilding.transform.eulerAngles = buildChanges[bIndex].transform.eulerAngles;
         }
+
+        buildChanges.Clear();
+
+        //for (int bIndex = 0; bIndex < buildingParent.childCount; bIndex++)
+        //{
+        //    int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
+        //    Vector3 _buildingPostistion = buildParent.GetChild(bIndex).transform.localPosition;
+        //    Vector3 _buildingRotation = buildParent.GetChild(bIndex).transform.eulerAngles;
+
+        //    var newBuilding = Instantiate(this.objects[_buildingID], this.transform.position, Quaternion.identity, baseParent);
+        //    newBuilding.transform.localPosition = _buildingPostistion;
+        //    newBuilding.transform.eulerAngles = _buildingRotation;
+        //}
     }
 }
