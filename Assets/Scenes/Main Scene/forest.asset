@@ -42,13 +42,13 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 677.7
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 4097
+    m_Value: 677.7
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 4000
+    m_Value: 4902
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
     m_Value: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   depthExtent:
     m_OverrideState: 1
     m_Value: 64
@@ -244,7 +244,7 @@ MonoBehaviour:
   active: 1
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 750
+    m_Value: 300
   directionalTransmissionMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0.41445234}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.3275862}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.3687386}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
