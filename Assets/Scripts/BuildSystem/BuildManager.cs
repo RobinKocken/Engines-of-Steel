@@ -142,7 +142,7 @@ public class BuildManager : MonoBehaviour
             int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
             var newBuilding = Instantiate(buildChanges[bIndex], baseParent.transform.position, Quaternion.identity, baseParent);
             newBuilding.transform.localPosition = buildChanges[bIndex].transform.localPosition;
-            newBuilding.transform.eulerAngles = buildChanges[bIndex].transform.eulerAngles + gameManager.baseController.transform.eulerAngles;
+            newBuilding.transform.localEulerAngles = buildChanges[bIndex].transform.localEulerAngles;
         }
 
         buildChanges.Clear();
