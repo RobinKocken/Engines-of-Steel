@@ -105,7 +105,7 @@ public class BaseController : MonoBehaviour
             if(baseCamera.activeSelf)
                 CamSwitch();
 
-            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            gameManager.SwitchStatePlayer(GameManager.PlayerState.player, UIManager.ExternalUIState.none);
         }
 
         CalculateInputDirection();

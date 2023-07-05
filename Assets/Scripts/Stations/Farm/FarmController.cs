@@ -25,7 +25,7 @@ public class FarmController : MonoBehaviour, IInteractable
     public void Interact(GameManager gameManager)
     {
         farmManager.OpenFarmUI(this);
-        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui);
+        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui, UIManager.ExternalUIState.none);
     }
 
 

@@ -11,6 +11,6 @@ public class Bench : MonoBehaviour, IInteractable
 
     void Crafting(GameManager gameManager)
     {
-        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui);
+        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui, UIManager.ExternalUIState.craft);
     }
 }

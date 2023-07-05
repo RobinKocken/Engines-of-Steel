@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
         none,
         build,
         craft,
-        farm,
+        oven,
     }
     public ExternalUIState externalUIState;
 
@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     public InternalUI internalUI;
     public ExternalUI externalUI;
     public AnimationUI animationUI;
+
+    public Oven oven;
 
     void Start()
     {
@@ -83,7 +85,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
-                    gameManager.SwitchStatePlayer(previousState);
+                    gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);
                 }
             }
 
@@ -98,7 +100,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     SwitchStateUI(InternalUIState.none, ExternalUIState.none,previousState);
-                    gameManager.SwitchStatePlayer(previousState);
+                    gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);
                 }
             }
 
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
-                    gameManager.SwitchStatePlayer(previousState);
+                    gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);
                 }
             }
 
@@ -124,7 +126,7 @@ public class UIManager : MonoBehaviour
             if(Input.GetKeyDown(optionkey))
             {
                 SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
-                gameManager.SwitchStatePlayer(previousState);                
+                gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);                
             }
         } 
     }
@@ -134,7 +136,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(interactionKey))
         {
             SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
-            gameManager.SwitchStatePlayer(previousState);
+            gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);
         }
     }
 
@@ -196,7 +198,7 @@ public class UIManager : MonoBehaviour
                     External(false, true, false);
                     break;
                 }
-                case ExternalUIState.farm:
+                case ExternalUIState.oven:
                 {
                     External(false, false, true);
                     break;
@@ -236,9 +238,8 @@ public class UIManager : MonoBehaviour
         else
             externalUI.uiExternal.SetActive(false);
 
-        externalUI.uiBuild.SetActive(builActive);
         externalUI.uiCraft.SetActive(craftActive);
-        externalUI.uiFarm.SetActive(farmActive);
+        externalUI.uiOven.SetActive(farmActive);
     }
 
     public void Player(bool active)
@@ -288,9 +289,8 @@ public class InternalUI
 public class ExternalUI 
 {
     public GameObject uiExternal;
-    public GameObject uiBuild;
     public GameObject uiCraft;
-    public GameObject uiFarm;
+    public GameObject uiOven;
 }
 
 [System.Serializable]

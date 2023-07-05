@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SwitchStatePlayer(PlayerState.player);
+        SwitchStatePlayer(PlayerState.player, UIManager.ExternalUIState.none);
     }
 
     void Update()
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Make from this a cleaner Version //
-    public void SwitchStatePlayer(PlayerState pPlayerState)
+    public void SwitchStatePlayer(PlayerState pPlayerState, UIManager.ExternalUIState eexternalUI)
     {
         PlayerState ppPlayerState = PlayerState.player;
 
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
                 else if(Input.GetKeyDown(keys.optionKey))
                     uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none, ppPlayerState);
                 else if(Input.GetKeyDown(keys.interactionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.craft, ppPlayerState);
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, eexternalUI, ppPlayerState);
 
                 playerController.FreezePlayer();
 
@@ -206,16 +206,16 @@ public class GameManager : MonoBehaviour
         {
             // Change only if PLayer State is Player //
             if(playerState == PlayerState.player || playerState == PlayerState.build)
-                SwitchStatePlayer(PlayerState.ui);
+                SwitchStatePlayer(PlayerState.ui, UIManager.ExternalUIState.none);
         }
 
         // Check if Build Button is pressed //
         if(Input.GetKeyDown(keys.buildKey))
         {
             if(playerState == PlayerState.player)
-                SwitchStatePlayer(PlayerState.build);
+                SwitchStatePlayer(PlayerState.build, UIManager.ExternalUIState.none);
             else if(playerState == PlayerState.build)
-                SwitchStatePlayer(PlayerState.player);
+                SwitchStatePlayer(PlayerState.player, UIManager.ExternalUIState.none);
         }
     }
 

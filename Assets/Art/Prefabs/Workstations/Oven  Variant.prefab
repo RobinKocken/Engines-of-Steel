@@ -11,37 +11,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7866.484
+      value: 891.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.000020861626
+      value: 37.76106
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6293.2812
+      value: 5692.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6119012
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.79093426
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -104.546
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 569645bce7097f94dabca235904bab37,
         type: 3}
@@ -73,8 +73,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oven  Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 569645bce7097f94dabca235904bab37,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 569645bce7097f94dabca235904bab37,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4743682689827046115}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 569645bce7097f94dabca235904bab37,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1843992691357168934}
   m_SourcePrefab: {fileID: 100100000, guid: 569645bce7097f94dabca235904bab37, type: 3}
+--- !u!1 &105993683711884202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 569645bce7097f94dabca235904bab37,
+    type: 3}
+  m_PrefabInstance: {fileID: 989095786012329723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4743682689827046115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105993683711884202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9752028d7c48534882d197f416ec9ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 0}
+  processedItem: {fileID: 0}
+  processedAmount: 0
+  rawResource: {fileID: 0}
+  rawAmount: 0
+  metal: {fileID: 11400000, guid: 6b9482c585c4cbe478aaff3a9e99f8e1, type: 2}
+  stone: {fileID: 11400000, guid: 8270e4ae97367864db2087574e3d3507, type: 2}
+  steelResult: {fileID: 11400000, guid: 660e8b71ca9a11c4f87b9b634e3ac1d9, type: 2}
+  brickResult: {fileID: 11400000, guid: eed4b184025199b42a7a99d1040dd9aa, type: 2}
+  metalBurnTime: 5
+  stoneBurnTime: 5
+  run: 0
+  bMetal: 0
+  bStone: 0
+--- !u!65 &1843992691357168934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105993683711884202}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.71461, y: 2.6969135, z: 1.7198942}
+  m_Center: {x: 0.010183513, y: 1.3277596, z: 0.022756547}

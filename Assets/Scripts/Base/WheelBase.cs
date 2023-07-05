@@ -6,7 +6,7 @@ public class WheelBase : MonoBehaviour, IInteractable
 {
     public void Interact(GameManager gameManager)
     {
-        gameManager.SwitchStatePlayer(GameManager.PlayerState.station);
+        gameManager.SwitchStatePlayer(GameManager.PlayerState.station, UIManager.ExternalUIState.none);
     }
 
 }
