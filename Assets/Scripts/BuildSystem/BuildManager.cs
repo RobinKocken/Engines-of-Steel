@@ -54,7 +54,7 @@ public class BuildManager : MonoBehaviour
                 yPos + offset,
                 RoundToNearestGrid(pos.z));
 
-                Debug.Log(pos);
+                //Debug.Log(pos);
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
@@ -132,14 +132,17 @@ public class BuildManager : MonoBehaviour
     public void TransferBuildings()
     {
         Transform buildParent = gameManager.buildManager.transform;
-        Transform baseParent = gameManager.baseController.transform;
+        Transform baseParent = gameManager.baseController.gameObject.GetComponentInChildren<FarmManager>().transform;
+
+        
 
         for(int bIndex = 0; bIndex < buildChanges.Count; bIndex++)
         {
+            Debug.Log(buildChanges[bIndex].gameObject);
             int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
             var newBuilding = Instantiate(buildChanges[bIndex], baseParent.transform.position, Quaternion.identity, baseParent);
-            newBuilding.transform.localPosition = buildChanges[bIndex].transform.position;
-            newBuilding.transform.eulerAngles = buildChanges[bIndex].transform.eulerAngles;
+            newBuilding.transform.localPosition = buildChanges[bIndex].transform.localPosition;
+            newBuilding.transform.eulerAngles = buildChanges[bIndex].transform.eulerAngles + gameManager.baseController.transform.eulerAngles;
         }
 
         buildChanges.Clear();
