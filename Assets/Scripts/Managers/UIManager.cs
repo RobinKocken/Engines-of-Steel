@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public GameManager gameManager;
     public InventoryManager inventoryManager;
+    public Compass compass;
 
     public GameManager.PlayerState previousState;
 
@@ -31,6 +32,8 @@ public class UIManager : MonoBehaviour
     public ExternalUIState externalUIState;
 
     public GameObject uiPlayer;
+    public GameObject uiPlayerAndBase;
+
     public InternalUI internalUI;
     public ExternalUI externalUI;
     public AnimationUI animationUI;
@@ -150,6 +153,8 @@ public class UIManager : MonoBehaviour
         if(internalUIState != InternalUIState.none)
         {
             Player(false);
+            PlayerAndBase(false);
+
             switch(internalUIState)
             {
                 case InternalUIState.journal:
@@ -191,16 +196,22 @@ public class UIManager : MonoBehaviour
                 case ExternalUIState.build:
                 {
                     External(true, false, false);
+                    PlayerAndBase(true);
+
                     break;
                 }
                 case ExternalUIState.craft:
                 {
                     External(false, true, false);
+                    PlayerAndBase(false);
+
                     break;
                 }
                 case ExternalUIState.oven:
                 {
                     External(false, false, true);
+                    PlayerAndBase(false);
+
                     break;
                 }
             }
@@ -210,6 +221,7 @@ public class UIManager : MonoBehaviour
             Internal(false, false, false, false);
             External(false, false, false);
             Player(true);
+            PlayerAndBase(true);
         }
     }
 
@@ -245,6 +257,11 @@ public class UIManager : MonoBehaviour
     public void Player(bool active)
     {
         uiPlayer.SetActive(active);
+    }
+
+    public void PlayerAndBase(bool active)
+    {
+        uiPlayerAndBase.SetActive(active);
     }
 
     public void TopButtons(int stateValue)

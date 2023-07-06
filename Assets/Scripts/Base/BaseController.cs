@@ -22,6 +22,7 @@ public class BaseController : MonoBehaviour
     public float maxForwardSpeed;
     public float currentSpeed;
     public float speedBuildUp;
+    public float handbrakeSpeedDecreasing;
 
     [Header("Base Steering")]
     public float maxDegreesPerSec;
@@ -97,6 +98,9 @@ public class BaseController : MonoBehaviour
         else if(Input.GetKeyUp(kRight))
             iRight = 0;
 
+        if(Input.GetKey(kHandbrake))
+            Handbrake();
+
         if(Input.GetKeyDown(kCamSwitch))
             CamSwitch();
 
@@ -109,6 +113,14 @@ public class BaseController : MonoBehaviour
         }
 
         CalculateInputDirection();
+    }
+
+    void Handbrake()
+    {
+        if(currentSpeed > 0)
+            currentSpeed -= handbrakeSpeedDecreasing * Time.deltaTime;
+        else if(currentSpeed <= 0)
+            currentSpeed = 0;
     }
 
     void CamSwitch()

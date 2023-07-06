@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    public QuestMarker questMarker;
+    public GameObject finishedUI;
 
-    public string questName;
-    public string questDescription;
+    private void Start()
+    {
+        finishedUI.SetActive(false);
+    }
 
-    public Sprite questSprite;
-
-    public bool isFinished;
+    public void IsFinished()
+    {
+        finishedUI.SetActive(true);
+    }
 }

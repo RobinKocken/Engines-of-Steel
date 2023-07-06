@@ -73,6 +73,16 @@ public class CanvasManager : MonoBehaviour
                 BaseController baseController = GameObject.FindGameObjectWithTag("Base").GetComponent<BaseController>();
                 baseController.basePickUp.inventoryManager = gameManager.inventoryManager;
 
+                float dif = gameManager.compass.transform.eulerAngles.y - gameManager.playerCamera.transform.eulerAngles.y;
+                gameManager.compass.transform.eulerAngles = new Vector3(0, gameManager.compass.transform.eulerAngles.y + dif, 0);
+                uiManager.compass.comp = gameManager.compass.transform;
+                uiManager.compass.player = gameManager.playerCamera.transform;
+
+                foreach(QuestMarker marker in gameManager.quests)
+                {
+                    uiManager.compass.AddQuestMarker(marker);
+                }
+
                 break;
             }
         }

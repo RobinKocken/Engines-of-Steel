@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4963027607019267270
 MonoBehaviour:
@@ -56,6 +56,14 @@ MonoBehaviour:
   buildManager: {fileID: 0}
   dataManager: {fileID: 0}
   playerCamera: {fileID: 0}
+  oldPlayerPos: {x: 0, y: 0, z: 0}
+  oldPlayerRot: {x: 0, y: 0, z: 0}
+  baseBuildingBlueprint: {fileID: 0}
+  quests:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  compass: {fileID: 0}
 --- !u!114 &3489476523331116375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +86,7 @@ MonoBehaviour:
   baseBackwardsKey: 115
   baseLeftKey: 97
   baseRightKey: 100
-  baseHandbrake: 116
+  baseHandbrake: 32
   baseSwitchCamKey: 118
   journalKey: 106
   inventoryKey: 9

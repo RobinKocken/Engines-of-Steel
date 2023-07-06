@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,20 +34,12 @@ public class GameManager : MonoBehaviour
     public Vector3 oldPlayerPos;
     public Vector3 oldPlayerRot;
     public GameObject baseBuildingBlueprint;
-    void Awake()
-    {
-        if(SaveSystem.instance != null)
-        {
-            SaveSystem.instance.gameManager = this;
-            dataManager = SaveSystem.instance;
 
-            if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
-            {
-                Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
-                SaveSystem.instance.LoadData();
-            }
-        }
-    }
+    public List<QuestMarker> quests = new List<QuestMarker>();
+
+    public GameObject compass;
+    float mouseX;
+    float yRotation;
 
     //small save system part
     public void DoSave()
@@ -55,12 +49,33 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if(SaveSystem.instance != null)
+        {
+            SaveSystem.instance.gameManager = this;
+            dataManager = SaveSystem.instance;
+
+            if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+            {
+                Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
+                StartCoroutine(SaveSystem.instance.LoadData());
+            }
+        }
+
         SwitchStatePlayer(PlayerState.player, UIManager.ExternalUIState.none);
+
+        yRotation = compass.transform.eulerAngles.y;
     }
 
     void Update()
     {
         StatePlayer();
+    }
+    
+    void CompassRot()
+    {
+        mouseX = Input.GetAxis("Mouse X") * OptionManager.playerMouseSens;
+        yRotation += mouseX;
+        compass.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     // State of the Player //
@@ -74,6 +89,7 @@ public class GameManager : MonoBehaviour
                 playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
                 raycastController.GetInteractionKeyInput(keys.interactionKey);
                 inventoryManager.PlayerUpdate();
+                CompassRot();
 
                 break;
             }
@@ -81,7 +97,7 @@ public class GameManager : MonoBehaviour
             {
                 baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseHandbrake, keys.baseSwitchCamKey, keys.interactionKey);
                 inventoryManager.PlayerUpdate();
-
+                CompassRot();
 
                 break;
             }
@@ -105,6 +121,7 @@ public class GameManager : MonoBehaviour
                 InputForSwitchStatePlayer();
                 playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
                 inventoryManager.PlayerUpdate();
+                CompassRot();
 
                 break;
             }
