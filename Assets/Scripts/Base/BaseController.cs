@@ -7,6 +7,7 @@ public class BaseController : MonoBehaviour
 {
     public GameManager gameManager;
     public BasePickUp basePickUp;
+    public GameObject stationPosMap;
 
     public Animator animator;
 
@@ -63,6 +64,9 @@ public class BaseController : MonoBehaviour
         Raycasts();
         BaseMovement();
         CheckPlayerPos();
+
+        stationPosMap.transform.position = transform.position;
+        stationPosMap.transform.forward = -transform.forward;
     }
 
     void InitializeBase()

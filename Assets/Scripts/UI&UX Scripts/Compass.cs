@@ -27,7 +27,7 @@ public class Compass : MonoBehaviour
     {
         comp.position = player.position;
 
-        compassImage.uvRect = new Rect(comp.localEulerAngles.y / 360, 0, 1, 1);    
+        compassImage.uvRect = new Rect(comp.eulerAngles.y / 360, 0, 1, 1);    
 
         for(int i = 0; i < questMarkers.Count; i++)
         {

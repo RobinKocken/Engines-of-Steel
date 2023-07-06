@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 22
   itemName: Roof
   maxStack: 32
-  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  icon: {fileID: 21300000, guid: 356874545b0d642489bdaa0d10c180dd, type: 3}
   prefab: {fileID: 4502788631259682647, guid: beda60679fcc9cf4eab1d2bb48304448, type: 3}

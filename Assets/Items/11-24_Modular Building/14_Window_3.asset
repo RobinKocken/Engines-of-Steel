@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 14
   itemName: Window 3
   maxStack: 32
-  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  icon: {fileID: 21300000, guid: 6f65f44446b5f1149820286585f52855, type: 3}
   prefab: {fileID: 4090357881655419753, guid: c9412bf54771ed944aa39ee9347929a7, type: 3}

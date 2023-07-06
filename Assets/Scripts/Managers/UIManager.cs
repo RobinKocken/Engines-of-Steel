@@ -39,6 +39,8 @@ public class UIManager : MonoBehaviour
     public AnimationUI animationUI;
 
     public Oven oven;
+    public Map map;
+    public GameObject interact;
 
     void Start()
     {
@@ -58,23 +60,25 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public TMP_Text fpsCounter;
-    float fps;
-    float updateTimer = 0.2f;
-
-    void Update()
-    {
-        updateTimer -= Time.deltaTime;
-        if(updateTimer <= 0)
-        {
-            fps = 1 / Time.unscaledDeltaTime;
-            fpsCounter.text = $"FPS: {Mathf.Round(fps)}";
-            updateTimer = 0.2f;
-        }
-    }
-
     public void InternalUIUpdate(KeyCode journalKey ,KeyCode inventoryKey, KeyCode mapKey, KeyCode optionkey)
     {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if((int)internalUIState - 1 < 1)
+                return;
+
+            SwitchStateUI(internalUIState - 1, ExternalUIState.none, previousState);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3)) 
+        {
+            if((int)internalUIState + 1 > 3)
+                return;
+
+            SwitchStateUI(internalUIState + 1, ExternalUIState.none, previousState);
+        }
+
+
         if(internalUIState != InternalUIState.option) 
         {
             // Journal Key //
@@ -267,6 +271,12 @@ public class UIManager : MonoBehaviour
     public void TopButtons(int stateValue)
     {
         SwitchStateUI((InternalUIState)stateValue, ExternalUIState.none, previousState);
+    }
+
+    public void Continue()
+    {
+        SwitchStateUI(InternalUIState.none, ExternalUIState.none, previousState);
+        gameManager.SwitchStatePlayer(previousState, UIManager.ExternalUIState.none);
     }
 
     IEnumerator BarAnimation(int i)

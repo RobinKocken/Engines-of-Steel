@@ -31,7 +31,6 @@ public class OptionManager : MonoBehaviour
 
     void Start()
     {
-        playerMouseSens = mouseSens;
         topUI.bar.GetComponent<Image>().color = topUI.barColor;    
         
         for(int x = 0; x < topUI.back.Length; x++)
@@ -69,6 +68,8 @@ public class OptionManager : MonoBehaviour
             }
 
         }
+
+        playerMouseSens = mouseSens;
     }
 
     public void OptionButton()
@@ -149,8 +150,6 @@ public class OptionManager : MonoBehaviour
         {
             topUI.bar.localPosition = Vector2.MoveTowards(topUI.bar.localPosition, topUI.barTarget[targetIndex].localPosition, topUI.barSpeed * Time.deltaTime);
             topUI.bar.sizeDelta = Vector2.MoveTowards(topUI.bar.sizeDelta, topUI.barTarget[targetIndex].sizeDelta, topUI.barSpeed * Time.deltaTime);
-
-
 
             if(topUI.bar.localPosition == topUI.barTarget[targetIndex].localPosition && topUI.bar.sizeDelta == topUI.barTarget[targetIndex].sizeDelta)
             {

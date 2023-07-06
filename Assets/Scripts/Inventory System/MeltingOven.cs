@@ -58,6 +58,9 @@ public class MeltingOven : MonoBehaviour, IInteractable
             {
                 bMetal = true;
                 run = true;
+
+                rawResource = metal;
+
                 StartCoroutine(Burner(metalBurnTime, steelResult));
             }
         }
@@ -86,6 +89,9 @@ public class MeltingOven : MonoBehaviour, IInteractable
             {
                 bMetal = true;
                 run = true;
+
+                rawResource = stone;
+
                 StartCoroutine(Burner(stoneBurnTime, brickResult));
             }
         }
@@ -103,6 +109,7 @@ public class MeltingOven : MonoBehaviour, IInteractable
                 bMetal = false;
                 bStone = false;
 
+                rawResource = null;
                 processedItem = null;
 
                 Debug.Log("Set False");

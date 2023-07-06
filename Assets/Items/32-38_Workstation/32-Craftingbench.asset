@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 32
   itemName: Craftingbench
   maxStack: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0d996effc96264745aaf8a05c25d3449, type: 3}
   prefab: {fileID: 0}

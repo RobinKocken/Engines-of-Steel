@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
 {
+    public OptionManager optionManager;
+
     public int targetFPS;
     public int currentWindowMode;
 
@@ -19,6 +21,11 @@ public class ScreenManager : MonoBehaviour
 
         fpsSlider.DisplayTextFPS();
         mouseSlider.DisplayMouse();
+    }
+
+    private void Update()
+    {
+        optionManager.mouseSens = mouseSlider.slider.value;
     }
 
     public void Resolution(int width, int height, int windowMode)

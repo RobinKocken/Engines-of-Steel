@@ -17,8 +17,10 @@ public class InventoryMessage : MonoBehaviour
 
     public void StartMessage(Item item, int amount)
     {
+        transform.localPosition = startPos;
+
         icon.sprite = item.icon;
-        itemName.text = item.name;
+        itemName.text = item.itemName;
         this.amount.text = amount.ToString();
 
         StartCoroutine(MessageAnimation());

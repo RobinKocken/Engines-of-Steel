@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 15
   itemName: Doorway
   maxStack: 32
-  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  icon: {fileID: 21300000, guid: 9c42d6387da9e8247b0b8d67a5351db4, type: 3}
   prefab: {fileID: 699303020179694208, guid: 589a3bef44b985547957a7a50f23b471, type: 3}

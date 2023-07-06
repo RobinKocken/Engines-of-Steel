@@ -174,7 +174,11 @@ public class InventoryManager : MonoBehaviour
             if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
             {
                 currentSlot.SetItem(item, itemAmount);
+
                 SyncHotBar();
+
+                GameObject mes = Instantiate(messagePrefab, transform);
+                mes.GetComponent<InventoryMessage>().StartMessage(item, itemAmount);
 
                 return;
             }
@@ -193,7 +197,11 @@ public class InventoryManager : MonoBehaviour
                         if(itemAmount <= currentSlot.item.maxStack - currentSlot.amount)
                         {
                             currentSlot.AddAmountToItem = itemAmount;
+
                             SyncHotBar();
+
+                            GameObject mes = Instantiate(messagePrefab, transform);
+                            mes.GetComponent<InventoryMessage>().StartMessage(item, itemAmount);
 
                             return;
                         }
@@ -203,7 +211,11 @@ public class InventoryManager : MonoBehaviour
                             int maxAmount = currentSlot.item.maxStack - currentSlot.amount;
                             itemAmount -= maxAmount;
                             currentSlot.AddAmountToItem = maxAmount;
+
                             SyncHotBar();
+
+                            GameObject mes = Instantiate(messagePrefab, transform);
+                            mes.GetComponent<InventoryMessage>().StartMessage(item, itemAmount);
 
                             continue;
                         }
@@ -220,7 +232,11 @@ public class InventoryManager : MonoBehaviour
                 if(currentSlot.item == null)
                 {
                     currentSlot.SetItem(item, itemAmount);
+
                     SyncHotBar();
+
+                    GameObject mes = Instantiate(messagePrefab, transform);
+                    mes.GetComponent<InventoryMessage>().StartMessage(item, itemAmount);
 
                     return;
                 }
@@ -312,6 +328,23 @@ public class InventoryManager : MonoBehaviour
         SyncHotBar();
     }
 
+    public void InventoryClear()
+    {
+        for(int i = 0; i < slots.Count; i++)
+        {
+            if(slots[i].TryGetComponent<Slot>(out Slot currentSlot))
+            {
+                if(currentSlot != null)
+                {
+                    if(currentSlot.item != null)
+                    {
+                        RemoveItem(currentSlot.item, currentSlot.amount, -1);
+                    }
+                }
+            }
+        }
+    }
+
     void SyncHotBar()
     {
         for(int i = 0; i < hotbarSlots.Count; i++)
@@ -332,6 +365,7 @@ public class InventoryManager : MonoBehaviour
     {
         cursorActive = !cursorActive;
         iconHolder.sprite = itemHolder.icon;
+        amountTextHolder.text = amountHolder.ToString();
         cursor.gameObject.SetActive(cursorActive);
     }
 

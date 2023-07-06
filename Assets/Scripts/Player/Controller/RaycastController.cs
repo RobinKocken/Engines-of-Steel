@@ -9,6 +9,8 @@ public class RaycastController : MonoBehaviour
     public float rayDistance;
     public LayerMask layerMask;
 
+    public GameObject interact;
+
     IInteractable iInteractable;
     bool canInteract;
 
@@ -42,6 +44,8 @@ public class RaycastController : MonoBehaviour
         {
             if(hit.transform.TryGetComponent<IInteractable>(out IInteractable iInteractable))
             {
+                interact.SetActive(true);
+
                 if(Input.GetKeyDown(kInteraction))
                 {
                     iInteractable.Interact(gameManager);
@@ -52,6 +56,10 @@ public class RaycastController : MonoBehaviour
                 canInteract = false;
                 this.iInteractable = null;
             }
+        }
+        else
+        {
+            interact.SetActive(false);
         }
     }
 }

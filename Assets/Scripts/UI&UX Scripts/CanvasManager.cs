@@ -55,6 +55,15 @@ public class CanvasManager : MonoBehaviour
                 mainMenuUI.SetActive(true);
                 gameUI.SetActive(false);
 
+                inventoryManager.InventoryClear();
+                
+                for(int i = 0; i < uiManager.compass.questIcons.Count; i++)
+                {
+                    Destroy(uiManager.compass.questIcons[i]);
+                }
+                uiManager.compass.questMarkers.Clear();
+                uiManager.compass.questIcons.Clear();
+
                 break;
             }
             case CanvasState.game:
@@ -73,8 +82,7 @@ public class CanvasManager : MonoBehaviour
                 BaseController baseController = GameObject.FindGameObjectWithTag("Base").GetComponent<BaseController>();
                 baseController.basePickUp.inventoryManager = gameManager.inventoryManager;
 
-                float dif = gameManager.compass.transform.eulerAngles.y - gameManager.playerCamera.transform.eulerAngles.y;
-                gameManager.compass.transform.eulerAngles = new Vector3(0, gameManager.compass.transform.eulerAngles.y + dif, 0);
+                gameManager.compass.transform.eulerAngles = Vector3.zero;
                 uiManager.compass.comp = gameManager.compass.transform;
                 uiManager.compass.player = gameManager.playerCamera.transform;
 
@@ -82,6 +90,10 @@ public class CanvasManager : MonoBehaviour
                 {
                     uiManager.compass.AddQuestMarker(marker);
                 }
+
+                uiManager.map.stationFollow = gameManager.baseController.stationPosMap;
+
+                gameManager.playerCamera.GetComponent<RaycastController>().interact = uiManager.interact;
 
                 break;
             }

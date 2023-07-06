@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 20
   itemName: Wall Low
   maxStack: 32
-  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  icon: {fileID: 21300000, guid: 5bdf813ecd2b00d49803be36d1e37d71, type: 3}
   prefab: {fileID: 8407773696967422573, guid: 58650b8747449a94a84aa192c2e1a511, type: 3}

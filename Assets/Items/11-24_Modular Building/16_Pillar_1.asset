@@ -15,5 +15,5 @@ MonoBehaviour:
   itemID: 16
   itemName: Pillar 1
   maxStack: 32
-  icon: {fileID: 21300000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}
+  icon: {fileID: 21300000, guid: 672ede57eaddc804a808ac27e3fae9e7, type: 3}
   prefab: {fileID: 8189245398819224179, guid: f29048ef646643e4a88feffaea271771, type: 3}
