@@ -126,18 +126,20 @@ public class SaveSystem : MonoBehaviour
         return container;
     }
 
-    public void LoadData()
+    public IEnumerator LoadData()
     {
+        yield return new WaitForSeconds(1);
         //loading every inventory slot and what was inside of them
         Debug.Log("Refilling Inventory");
         var _dataSlot = dataSlots.savedData[slotToLoad];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
+            Debug.Log(index);
             if (_dataSlot.slotItemType[index] == -1)
             {
-                gameManager.inventoryManager.AddItem(null, 0, index);
+                continue;
             }
-            else
+            else if (_dataSlot.slotItemType[index] >= 0)
             {
                 Debug.Log("adding: " + gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]]);
                 gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]], _dataSlot.slotItemCount[index], index);
@@ -182,5 +184,6 @@ public class SaveSystem : MonoBehaviour
             }
         }
         Datastate = SystemState.Waiting;
+        yield return null;
     }
 }
