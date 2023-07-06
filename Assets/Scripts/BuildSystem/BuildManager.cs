@@ -30,6 +30,8 @@ public class BuildManager : MonoBehaviour
 
     private RaycastHit hit;
     private List<GameObject> buildChanges = new List<GameObject>();
+    [SerializeField] private Material[] materials;
+    [SerializeField] private Material oldMaterial;
 
     public void SelectObject(int index)
     {
@@ -73,11 +75,14 @@ public class BuildManager : MonoBehaviour
                 {
                     PlaceObject();
                 }
+                UpdateMaterials();
             }
         }
     }
     void PlaceObject()
     {
+        pendingObj.GetComponent<MeshRenderer>().material = oldMaterial;
+        oldMaterial = null;
         buildChanges.Add(pendingObj.gameObject);
         pendingObj = null;
         yPos = 0;
@@ -146,16 +151,26 @@ public class BuildManager : MonoBehaviour
         }
 
         buildChanges.Clear();
+    }
 
-        //for (int bIndex = 0; bIndex < buildingParent.childCount; bIndex++)
-        //{
-        //    int _buildingID = buildParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID;
-        //    Vector3 _buildingPostistion = buildParent.GetChild(bIndex).transform.localPosition;
-        //    Vector3 _buildingRotation = buildParent.GetChild(bIndex).transform.eulerAngles;
+    void UpdateMaterials()
+    {
+        if(pendingObj != null)
+        {
+            if (oldMaterial == null)
+            {
+                oldMaterial = pendingObj.GetComponent<MeshRenderer>().material;
+            }
 
-        //    var newBuilding = Instantiate(this.objects[_buildingID], this.transform.position, Quaternion.identity, baseParent);
-        //    newBuilding.transform.localPosition = _buildingPostistion;
-        //    newBuilding.transform.eulerAngles = _buildingRotation;
-        //}
+            if (canPlace)
+            {
+                pendingObj.GetComponent<MeshRenderer>().material = materials[0];
+            }
+            else
+            {
+                pendingObj.GetComponent<MeshRenderer>().material = materials[1];
+            }
+        }
+        
     }
 }

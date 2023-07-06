@@ -3008,6 +3008,10 @@ MonoBehaviour:
   gridSize: 1.57
   gridHeight: 2
   yPos: 0
+  materials:
+  - {fileID: 2100000, guid: 47689ea2f0510d44289e6a3acbc47411, type: 2}
+  - {fileID: 2100000, guid: be2dc611230fadf4bb6e492746f345df, type: 2}
+  oldMaterial: {fileID: 0}
 --- !u!1 &2565411203473219485
 GameObject:
   m_ObjectHideFlags: 0

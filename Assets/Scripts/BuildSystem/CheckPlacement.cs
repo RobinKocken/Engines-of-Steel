@@ -19,7 +19,7 @@ public class CheckPlacement : MonoBehaviour
     //If the Object colides with another object, make it unable to be placed
     private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log(other.name);
         if (other.gameObject.TryGetComponent(out CheckPlacement check)) 
         {
             if(check != null)
@@ -31,6 +31,7 @@ public class CheckPlacement : MonoBehaviour
     //If the Object does not colide with another object, make it able to be placed
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.name);
         if (other.gameObject.TryGetComponent(out CheckPlacement check))
         {
             if (check != null)
@@ -39,4 +40,6 @@ public class CheckPlacement : MonoBehaviour
             }
         }
     }
+    
+
 }
