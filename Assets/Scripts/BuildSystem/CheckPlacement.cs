@@ -9,7 +9,11 @@ public class CheckPlacement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buildManager = GameObject.Find("Buildings").GetComponent<BuildManager>();
+        if(buildManager == null)
+        {
+            buildManager = GameObject.Find("Buildings").GetComponent<BuildManager>();
+        }
+        
         buildManager.canPlace = true;
     }
     //If the Object colides with another object, make it unable to be placed
