@@ -80,7 +80,7 @@ public class SaveSystem : MonoBehaviour
         dataSlot.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
 
         //getting the buildingID of each placed building
-        Transform baseParent = gameManager.buildManager.buildingParent;
+        Transform baseParent = gameManager.buildManager.buildParent;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
 
@@ -101,8 +101,8 @@ public class SaveSystem : MonoBehaviour
             }
             //saving the ID of each buidling and their transforms
             dataSlot.buildingIndexes.Add(baseParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID);
-            dataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
-            dataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
+            dataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.localPosition);
+            dataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.localEulerAngles);
         }
         Datastate = SystemState.Waiting;
         return dataSlots.savedData[_saveInSlot];
@@ -156,13 +156,19 @@ public class SaveSystem : MonoBehaviour
         gameManager.baseController.transform.eulerAngles = new Vector3(_dataSlot.baseRotation.x, _dataSlot.baseRotation.y, _dataSlot.baseRotation.z);
 
         //loading all buildings that were placed with correct position and rotation
-        Transform baseParent = gameManager.buildManager.buildingParent;
+        Transform baseParent = gameManager.buildManager.baseParent;
+        Transform buildParent = gameManager.buildManager.buildParent;
         for (int bIndex = 0; bIndex < _dataSlot.buildingIndexes.Count; bIndex++)
         {
             Debug.Log("Rebuilding Base");
-            GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], baseParent);
-            newBuilding.transform.position = _dataSlot.buildingPosistions[bIndex];
-            newBuilding.transform.eulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
+            GameObject newBuilding = Instantiate(buildParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], baseParent);
+            newBuilding.transform.localPosition = _dataSlot.buildingPosistions[bIndex];
+            newBuilding.transform.localEulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
+
+            Debug.Log("Rebuilding Build Blueprint");
+            GameObject bpBuilding = Instantiate(buildParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], buildParent);
+            bpBuilding.transform.localPosition = _dataSlot.buildingPosistions[bIndex];
+            bpBuilding.transform.localEulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
 
             //if the building was a farm load all crop data it contained
             if (newBuilding.TryGetComponent(out FarmController farm))

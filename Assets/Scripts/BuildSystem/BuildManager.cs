@@ -11,7 +11,8 @@ public class BuildManager : MonoBehaviour
 {
 
     public GameManager gameManager;
-    public Transform buildingParent;
+    public Transform buildParent;
+    public Transform baseParent;
 
     [SerializeField] private LayerMask layerMask;
     [Header("Objects")]
@@ -35,7 +36,7 @@ public class BuildManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
-        pendingObj = Instantiate(objects[index], pos, transform.rotation, buildingParent);
+        pendingObj = Instantiate(objects[index], pos, transform.rotation, buildParent);
         pendingObj.GetComponent<CheckPlacement>().buildingID = index;
         Debug.Log("building object");
     }
@@ -92,11 +93,11 @@ public class BuildManager : MonoBehaviour
     {
         if (gameManager.playerState == GameManager.PlayerState.build)
         {
-            GameObject test = gameManager.inventoryManager.GetSelectedGameObject();
+            GameObject curSlot = gameManager.inventoryManager.GetSelectedGameObject();
 
-            if (test != null)
+            if (curSlot != null)
             {
-                test.TryGetComponent(out CheckPlacement component);
+                curSlot.TryGetComponent(out CheckPlacement component);
                 if (Input.GetKeyDown(KeyCode.E) && pendingObj == null)
                 {
                     if (component != null)
@@ -136,8 +137,8 @@ public class BuildManager : MonoBehaviour
 
     public void TransferBuildings()
     {
-        Transform buildParent = gameManager.buildManager.transform;
-        Transform baseParent = gameManager.baseController.gameObject.GetComponentInChildren<FarmManager>().transform;
+        buildParent = gameManager.buildManager.transform;
+        baseParent = gameManager.baseController.gameObject.GetComponentInChildren<FarmManager>().transform;
 
         
 
