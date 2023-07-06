@@ -6,6 +6,8 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
+    public GameObject messagePrefab;
+
     public List<Item> itemHolders;
     public Slot selectedSlot;
 
@@ -172,6 +174,8 @@ public class InventoryManager : MonoBehaviour
             if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
             {
                 currentSlot.SetItem(item, itemAmount);
+                SyncHotBar();
+
                 return;
             }
         }
@@ -189,6 +193,8 @@ public class InventoryManager : MonoBehaviour
                         if(itemAmount <= currentSlot.item.maxStack - currentSlot.amount)
                         {
                             currentSlot.AddAmountToItem = itemAmount;
+                            SyncHotBar();
+
                             return;
                         }
                         // Partial Amount is Add to Slot because Max Stack is archieved // 
@@ -197,6 +203,8 @@ public class InventoryManager : MonoBehaviour
                             int maxAmount = currentSlot.item.maxStack - currentSlot.amount;
                             itemAmount -= maxAmount;
                             currentSlot.AddAmountToItem = maxAmount;
+                            SyncHotBar();
+
                             continue;
                         }
                     }
@@ -212,6 +220,7 @@ public class InventoryManager : MonoBehaviour
                 if(currentSlot.item == null)
                 {
                     currentSlot.SetItem(item, itemAmount);
+                    SyncHotBar();
 
                     return;
                 }
@@ -228,6 +237,8 @@ public class InventoryManager : MonoBehaviour
             if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
             {
                 currentSlot.SubAmountFromItem = itemAmount;
+                SyncHotBar();
+
                 return;
             }
         }
@@ -243,6 +254,8 @@ public class InventoryManager : MonoBehaviour
                         if(itemAmount <= currentSlot.amount)
                         {
                             currentSlot.SubAmountFromItem = itemAmount;
+                            SyncHotBar();
+
                             return;
                         }
                     }
