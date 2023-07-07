@@ -16,11 +16,18 @@ public class AudioManager : MonoBehaviour
     public TMP_Text musicText;
     public TMP_Text sfxText;
 
+    bool isAdded = false;
+
     void Start()
     {
-        masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        musicSlider.onValueChanged.AddListener(SetMusicVolume);
-        sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        if(!isAdded)
+        {
+            masterSlider.onValueChanged.AddListener(SetMasterVolume);
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+            isAdded = true;
+        }
     }
 
     void SetMasterVolume(float value)
