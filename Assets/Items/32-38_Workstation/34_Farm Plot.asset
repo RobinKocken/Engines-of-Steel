@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Farm Plot
   maxStack: 16
   icon: {fileID: 21300000, guid: 337277742946bb54b9321c3b6e0eb1da, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2125343298009274070, guid: 80bccf8f2776fa64cb0fb5ce509d138f, type: 3}

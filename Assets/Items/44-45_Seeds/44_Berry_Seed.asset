@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Berry Seed
   maxStack: 32
   icon: {fileID: 21300000, guid: 6aebd4dbfab741b478f74339111288a3, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 8509650690842524808, guid: 6e3a9efeb61843047aa759819cc3bf91, type: 3}

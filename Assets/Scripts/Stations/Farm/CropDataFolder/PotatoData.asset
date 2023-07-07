@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0533ea01bf90eaa4281b554152914d80, type: 3}
-  m_Name: TomatoData
+  m_Name: PotatoData
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: c31130b744098834e93d9da24d71e80c, type: 2}
-  GrowthStages: []
-  timeToGrow: 0
+  CropID: 1
+  GrowthStages:
+  - {fileID: 5040689465937824572, guid: adbb7ea1a73a9f143b9e2ee9b4b32b4c, type: 3}
+  - {fileID: 1511222250545427449, guid: ab780c5227834a64fa02da648860a7b9, type: 3}
+  timeToGrow: 120

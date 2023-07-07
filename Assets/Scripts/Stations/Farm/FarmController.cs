@@ -29,6 +29,7 @@ public class FarmController : MonoBehaviour, IInteractable
         {
             curSlot.TryGetComponent(out Crop cropToPlant);
             PlantCrop(cropToPlant.cropData.CropID);
+            gameManager.inventoryManager.RemoveItemFromHotbar(1);
         }
         else if(currentCrop != null)
         {
@@ -43,11 +44,8 @@ public class FarmController : MonoBehaviour, IInteractable
     //tell the farm wich crop to plant and place it in the world
     public void PlantCrop(int _cropToGrow)
     {
-        farmManager.cropListUI.SetActive(false);
-        farmManager.progressUI.SetActive(true);
-
         currentCrop = Instantiate(crops[_cropToGrow], this.transform);
-        currentCrop.transform.position = this.transform.position;
+        currentCrop.transform.localPosition = new Vector3(0, 0.24f, 0);
         StartCoroutine(GrowCrop(currentCrop.GetComponent<Crop>()));
         oldCrop = currentCrop;
     }
