@@ -131,8 +131,8 @@ MonoBehaviour:
   stone: {fileID: 11400000, guid: 8270e4ae97367864db2087574e3d3507, type: 2}
   steelResult: {fileID: 11400000, guid: 660e8b71ca9a11c4f87b9b634e3ac1d9, type: 2}
   brickResult: {fileID: 11400000, guid: eed4b184025199b42a7a99d1040dd9aa, type: 2}
-  metalBurnTime: 5
-  stoneBurnTime: 5
+  metalBurnTime: 2
+  stoneBurnTime: 2
   run: 0
   bMetal: 0
   bStone: 0

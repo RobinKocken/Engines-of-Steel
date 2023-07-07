@@ -58,11 +58,6 @@ public class BaseController : MonoBehaviour
     void Start()
     {
         InitializeBase();
-        
-        for(int i = 0; i < smoke.Length; i++)
-        {
-            smoke[i].Stop();
-        }
     }
 
     void Update()
@@ -162,14 +157,15 @@ public class BaseController : MonoBehaviour
                 currentSpeed = 0;            
         }
 
-        if(currentSpeed > 0)
+        if(currentSpeed != 0)
         {
             for(int i = 0; i < smoke.Length; i++)
             {
                 smoke[i].Play();
             }
         }
-        else if(currentSpeed == 0)
+
+        if(currentSpeed == 0)
         {
             for(int i = 0; i < smoke.Length; i++)
             {

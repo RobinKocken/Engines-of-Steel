@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558995377a47ef04d8108a8957370769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 8270e4ae97367864db2087574e3d3507, type: 2}
-  currentAmount: 10
+  item: {fileID: 11400000, guid: eed4b184025199b42a7a99d1040dd9aa, type: 2}
+  currentAmount: 15
   item2: {fileID: 11400000, guid: 6b9482c585c4cbe478aaff3a9e99f8e1, type: 2}
   currentAmount2: 5
   destroyThisObject: 1
