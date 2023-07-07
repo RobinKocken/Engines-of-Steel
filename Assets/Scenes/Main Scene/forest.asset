@@ -42,7 +42,7 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: -1770
+    m_Value: -33
   maximumHeight:
     m_OverrideState: 1
     m_Value: 7374.8
@@ -57,7 +57,7 @@ MonoBehaviour:
     m_Value: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.046
   depthExtent:
     m_OverrideState: 1
     m_Value: 64
@@ -253,7 +253,7 @@ MonoBehaviour:
     m_Value: 4
   cascadeShadowSplit0:
     m_OverrideState: 1
-    m_Value: 0.29637673
+    m_Value: 0.3747056
   cascadeShadowSplit1:
     m_OverrideState: 1
     m_Value: 0.4615944
