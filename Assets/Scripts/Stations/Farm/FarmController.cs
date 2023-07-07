@@ -24,19 +24,29 @@ public class FarmController : MonoBehaviour, IInteractable
     //if the player interacts with a farm, tell the farm manager which farm the player wants to interact with
     public void Interact(GameManager gameManager)
     {
-        farmManager.OpenFarmUI(this);
-        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui, UIManager.ExternalUIState.none);
+        GameObject curSlot = gameManager.inventoryManager.GetSelectedGameObject();
+        if(currentCrop == null)
+        {
+            curSlot.TryGetComponent(out Crop cropToPlant);
+            PlantCrop(cropToPlant.cropData.CropID);
+        }
+        else if(currentCrop != null)
+        {
+            if(fullyGrown)
+            {
+                HarvestCrops();
+            }
+        }
     }
 
 
     //tell the farm wich crop to plant and place it in the world
     public void PlantCrop(int _cropToGrow)
     {
-        cropToGrow = _cropToGrow;
         farmManager.cropListUI.SetActive(false);
         farmManager.progressUI.SetActive(true);
 
-        currentCrop = Instantiate(crops[cropToGrow], this.transform);
+        currentCrop = Instantiate(crops[_cropToGrow], this.transform);
         currentCrop.transform.position = this.transform.position;
         StartCoroutine(GrowCrop(currentCrop.GetComponent<Crop>()));
         oldCrop = currentCrop;

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bca490c52f4199f409ef2040a5b0703f, type: 3}
-  m_Name: Chair_Recipe
+  m_Name: Chouch_Recipe
   m_EditorClassIdentifier: 
   requirements:
-  - requiredItem: {fileID: 11400000, guid: 40a769425843c5e4eac8f086e2065db0, type: 2}
+  - requiredItem: {fileID: 11400000, guid: 660e8b71ca9a11c4f87b9b634e3ac1d9, type: 2}
     requiredAmount: 5
-  resultItem: {fileID: 11400000, guid: 639f9881ade27d64583ed81e2ae0de25, type: 2}
+  resultItem: {fileID: 11400000, guid: 9dc0240ecef00d143a5e678f06528e6b, type: 2}
   resultAmount: 1

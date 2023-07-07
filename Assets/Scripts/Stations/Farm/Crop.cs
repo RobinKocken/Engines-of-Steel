@@ -4,12 +4,5 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    public CropData cropData;
-    
-
-    public void Start()
-    {
-        
-    }
-   
+    public CropData cropData;   
 }

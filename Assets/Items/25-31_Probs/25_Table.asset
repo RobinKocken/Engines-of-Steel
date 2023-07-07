@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Table
   maxStack: 32
   icon: {fileID: 21300000, guid: e4978c4b901697245acc4a0c2662ae07, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2255161741030525009, guid: f798fae6e7505f2439ce77088fb0da08, type: 3}

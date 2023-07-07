@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883cd4e2f9e238f40b584e2292affdc3, type: 3}
-  m_Name: 7_Tomato
+  m_Name: 7_Potato
   m_EditorClassIdentifier: 
   itemID: 7
-  itemName: Tomato
+  itemName: Potato
   maxStack: 32
   icon: {fileID: 0}
   prefab: {fileID: 0}
