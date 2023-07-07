@@ -82,6 +82,7 @@ public class BuildManager : MonoBehaviour
     }
     void PlaceObject()
     {
+        gameManager.inventoryManager.RemoveItemFromHotbar(1);
         pendingObj.GetComponent<MeshRenderer>().material = oldMaterial;
         oldMaterial = null;
         buildChanges.Add(pendingObj.gameObject);

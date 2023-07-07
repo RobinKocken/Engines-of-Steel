@@ -40,6 +40,30 @@ public class CheckPlacement : MonoBehaviour
             }
         }
     }
-    
 
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //    if (collision.gameObject.TryGetComponent(out CheckPlacement check))
+    //    {
+    //        if (check != null)
+    //        {
+    //            if (check.buildingID != 4)
+    //            {
+    //                buildManager.canPlace = false;
+    //            }
+    //        }
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //    if (collision.gameObject.TryGetComponent(out CheckPlacement check))
+    //    {
+    //        if (check == null)
+    //        {
+    //            buildManager.canPlace = true;
+    //        }
+    //    }
+    //}
 }

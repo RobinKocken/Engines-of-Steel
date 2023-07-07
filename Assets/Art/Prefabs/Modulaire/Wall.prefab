@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 911333177503797158}
   - component: {fileID: 1658366623556633118}
   - component: {fileID: -2823295147476674426}
+  - component: {fileID: 1992849653154863803}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -107,8 +108,37 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703848034163224179}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.4, y: 4, z: 3}
   m_Center: {x: 0, y: 2, z: -0.00000017881393}
+--- !u!65 &1992849653154863803
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703848034163224179}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4082031, y: 0.14921618, z: 3}
+  m_Center: {x: -0.0068359375, y: 3.925392, z: -0.00000023841858}

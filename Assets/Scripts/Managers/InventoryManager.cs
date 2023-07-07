@@ -95,8 +95,9 @@ public class InventoryManager : MonoBehaviour
     public void RemoveItemFromHotbar(int amount)
     {
         int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
+        Debug.Log(id);
 
-        RemoveItem(hotbarSlots[id].gameObject.GetComponent<Slot>().item, amount, id);
+        RemoveItem(playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().item, amount, id);
     }
 
     void InitializeInventory()
