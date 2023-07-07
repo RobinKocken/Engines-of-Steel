@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BerryData
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: c41dfa08fb4ce844083ed34de9fa757a, type: 2}
-  CropID: 0
+  CropID: 1
   GrowthStages:
   - {fileID: 8509650690842524808, guid: 6e3a9efeb61843047aa759819cc3bf91, type: 3}
   - {fileID: 3234579966508437134, guid: 8111bdb95e442ff46b76fd253ecec449, type: 3}
