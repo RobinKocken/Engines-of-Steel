@@ -7,6 +7,7 @@ using System.Data;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
+using System;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -34,13 +35,13 @@ public class SaveSystem : MonoBehaviour
             Destroy(instance.gameObject);
         }
         instance = this;
-        if(File.Exists(path))
+        if (File.Exists(path))
         {
             dataSlots = Load();
         }
-        
+
         DontDestroyOnLoad(gameObject);
-        
+
     }
     public void Save(int _saveIndex)
     {
@@ -80,22 +81,15 @@ public class SaveSystem : MonoBehaviour
         dataSlot.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
 
         //getting the buildingID of each placed building
-        Transform baseParent = gameManager.buildManager.buildParent;
+        Transform baseParent = gameManager.buildManager.baseParent;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
 
             //if the building is a farm save what crop is inside the farm and how much the crop has grown
             if (baseParent.GetChild(bIndex).TryGetComponent(out FarmController farmController))
             {
-                for (int cIndex = 0; cIndex < farmController.crops.Length; cIndex++)
-                {
-                    if (farmController.currentCrop == farmController.crops[cIndex])
-                    {
-                        dataSlot.cropIndex.Add(cIndex);
-                        break;
-                    }
-                }
                 //saving the crop data
+                dataSlot.cropIndex.Add(farmController.currentCrop.GetComponent<Crop>().cropData.CropID);
                 dataSlot.cropProgess.Add(farmController.cropProgress);
                 dataSlot.cropStage.Add(farmController.growthStage);
             }
@@ -158,6 +152,8 @@ public class SaveSystem : MonoBehaviour
         //loading all buildings that were placed with correct position and rotation
         Transform baseParent = gameManager.buildManager.baseParent;
         Transform buildParent = gameManager.buildManager.buildParent;
+
+        var _fIndex = 0;
         for (int bIndex = 0; bIndex < _dataSlot.buildingIndexes.Count; bIndex++)
         {
             Debug.Log("Rebuilding Base");
@@ -173,20 +169,20 @@ public class SaveSystem : MonoBehaviour
             //if the building was a farm load all crop data it contained
             if (newBuilding.TryGetComponent(out FarmController farm))
             {
-                for (int _fIndex = 0; _fIndex < _dataSlot.cropIndex.Count; _fIndex++)
+                farm.currentCrop = Instantiate(farm.crops[_dataSlot.cropIndex[_fIndex]], farm.transform);
+                farm.currentCrop.transform.localPosition = new Vector3(0, 0.24f, 0);
+                farm.currentCrop = farm.crops[_dataSlot.cropIndex[_fIndex]];
+                farm.cropProgress = _dataSlot.cropProgess[_fIndex];
+                if (farm.cropProgress == 100)
                 {
-                    farm.currentCrop = farm.crops[_dataSlot.cropIndex[_fIndex]];
-                    farm.cropProgress = _dataSlot.cropProgess[_fIndex];
-                    if (farm.cropProgress == 100)
-                    {
-                        farm.fullyGrown = true;
-                    }
-                    farm.growthStage = _dataSlot.cropStage[_fIndex];
-                    if (!farm.fullyGrown)
-                    {
-                        farm.StartCoroutine(farm.GrowCrop(farm.crops[_dataSlot.cropIndex[_fIndex]].GetComponent<Crop>()));
-                    }
+                    farm.fullyGrown = true;
                 }
+                farm.growthStage = _dataSlot.cropStage[_fIndex];
+                if (!farm.fullyGrown)
+                {
+                    farm.StartCoroutine(farm.GrowCrop(farm.crops[_dataSlot.cropIndex[_fIndex]].GetComponent<Crop>()));
+                }
+                _fIndex++;
             }
         }
         Datastate = SystemState.Waiting;
