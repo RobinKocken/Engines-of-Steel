@@ -25,11 +25,7 @@ public class AudioManager : MonoBehaviour
             masterSlider.onValueChanged.AddListener(SetMasterVolume);
             musicSlider.onValueChanged.AddListener(SetMusicVolume);
             sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-
-            Debug.Log("Kkr");
         }
-
-
     }
 
     IEnumerator DelayStart()

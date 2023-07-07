@@ -8,6 +8,7 @@ public class CanvasManager : MonoBehaviour
     public OptionManager optionManager;
     public UIManager uiManager;
     public InventoryManager inventoryManager;
+    public SaveSystem saveSystem;
 
     public static CanvasManager canvasManager;
 
@@ -94,6 +95,8 @@ public class CanvasManager : MonoBehaviour
                 uiManager.map.stationFollow = gameManager.baseController.stationPosMap;
 
                 gameManager.playerCamera.GetComponent<RaycastController>().interact = uiManager.interact;
+
+                saveSystem.gameManager = gameManager;
 
                 break;
             }

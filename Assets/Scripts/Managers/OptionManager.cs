@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class OptionManager : MonoBehaviour
 {
+    public UIManager uIManager;
+
     public enum OptionState
     {
         none,
@@ -75,6 +77,8 @@ public class OptionManager : MonoBehaviour
     public void OptionButton()
     {
         gameObject.SetActive(true);
+
+        uIManager.internalUI.uiOption.SetActive(false);
     }
 
     private void OnEnable()
