@@ -54,28 +54,9 @@ public class SelectionManager : MonoBehaviour
         {
             Deselect();
         }
-        //toggle menu to show selected object info
-        Outline outline = target.GetComponent<Outline>();
-        if (outline == null)
-        {
             target.AddComponent<Outline>();
-            outline = target.GetComponent<Outline>();
-            outline.enabled = true;
-            objText.text = target.name;
+
             selectedObj = target;
-            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(0.99f, 0.99f, 0.99f);
-            selectUI.SetActive(true);
-        }
-        else
-        {
-            outline.enabled = true;
-            objText.text = target.name;
-            selectedObj = target;
-            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = true;
-            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(0.99f, 0.99f, 0.99f);
-            selectUI.SetActive(true);
-        }
     }
 
     public void Move()
@@ -87,13 +68,8 @@ public class SelectionManager : MonoBehaviour
     {
         if (selectedObj != null)
         {
-            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = false;
-            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
-            selectedObj.GetComponent<Outline>().enabled = false;
             selectedObj = null;
-            selectUI.SetActive(false);
         }
-
     }
     public void Delete()
     {
