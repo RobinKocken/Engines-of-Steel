@@ -48,6 +48,7 @@ public class BaseController : MonoBehaviour
 
     [Header("Other")]
     public float yRot;
+    public ParticleSystem[] smoke;
 
     // Input Value for Keys //
     int iForward, iBackwards, iLeft, iRight;
@@ -57,6 +58,11 @@ public class BaseController : MonoBehaviour
     void Start()
     {
         InitializeBase();
+        
+        for(int i = 0; i < smoke.Length; i++)
+        {
+            smoke[i].Stop();
+        }
     }
 
     void Update()
@@ -154,6 +160,21 @@ public class BaseController : MonoBehaviour
                 currentSpeed -= (speedBuildUp + currentSpeed / 6) * Time.deltaTime;
             else if(currentSpeed <= 0)
                 currentSpeed = 0;            
+        }
+
+        if(currentSpeed > 0)
+        {
+            for(int i = 0; i < smoke.Length; i++)
+            {
+                smoke[i].Play();
+            }
+        }
+        else if(currentSpeed == 0)
+        {
+            for(int i = 0; i < smoke.Length; i++)
+            {
+                smoke[i].Stop();
+            }
         }
 
         transform.Translate(currentSpeed * Time.deltaTime * -Vector3.forward);
