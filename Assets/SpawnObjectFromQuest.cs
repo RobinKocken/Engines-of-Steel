@@ -8,6 +8,7 @@ public class SpawnObjectFromQuest : MonoBehaviour
 
     private void OnDestroy()
     {
-        prefab.SetActive(true);
+        if(prefab != null)
+            prefab.SetActive(true);
     }
 }

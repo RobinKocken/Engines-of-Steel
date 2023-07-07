@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     bool readyToJump;
 
+    public AudioSource footSteps;
+    bool oncePlay;
+    bool onceStop;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -79,6 +83,25 @@ public class PlayerController : MonoBehaviour
         CheckIfJump(kJump);
         Run(kSprint);
         SpeedControl();
+
+        if(moveZ != 0 || moveX != 0)
+        {
+            if(!oncePlay)
+            {
+                footSteps.Play();
+                oncePlay = true;
+                onceStop = false;
+            }
+        }
+        else if(moveZ == 0 && moveX == 0)
+        {
+            if(onceStop)
+            {
+                footSteps.Stop();
+                onceStop = true;
+                oncePlay = false;
+            }
+        }
     }
 
     void CalculateInputDirection()
