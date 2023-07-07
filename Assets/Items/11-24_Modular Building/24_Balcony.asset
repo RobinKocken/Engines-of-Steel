@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Balcony
   maxStack: 32
   icon: {fileID: 21300000, guid: 41cbae0c451b2894db7cf6f1cd7874db, type: 3}
-  prefab: {fileID: 7280856209840597724, guid: 8953ad313d4b1484cb61bc2b46cea3f8, type: 3}
+  prefab: {fileID: 3177158702659329312, guid: 85f2a4ef374ba8745bcf9d312d20a692, type: 3}

@@ -53,10 +53,15 @@ public class CheckPlacement : MonoBehaviour
         {
             if (check != null)
             {
-                if (check.buildingID != 4)
+                if (check.buildingID == 4)
+                {
+                    buildManager.canPlace = true;
+                }
+                else
                 {
                     buildManager.canPlace = false;
                 }
+
             }
         }
     }

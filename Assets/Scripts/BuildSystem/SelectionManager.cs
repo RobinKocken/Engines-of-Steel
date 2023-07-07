@@ -54,9 +54,10 @@ public class SelectionManager : MonoBehaviour
         {
             Deselect();
         }
-            target.AddComponent<Outline>();
+        target.AddComponent<Outline>();
 
-            selectedObj = target;
+        selectedObj = target;
+        gameManager.buildManager.pendingObj = selectedObj;
     }
 
     public void Move()
@@ -69,6 +70,7 @@ public class SelectionManager : MonoBehaviour
         if (selectedObj != null)
         {
             selectedObj = null;
+            gameManager.buildManager.pendingObj = null;
         }
     }
     public void Delete()

@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Stairs
   maxStack: 32
   icon: {fileID: 21300000, guid: 0d3166d877c16f64094a6983cac72300, type: 3}
-  prefab: {fileID: 7590099363741434131, guid: 796d3f26dcf87ff45af0cc35de52fb30, type: 3}
+  prefab: {fileID: 8873013044456042070, guid: b15d2f703bd5b9b4ea4c9348f4cae8d1, type: 3}
