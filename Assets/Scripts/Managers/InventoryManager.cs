@@ -94,10 +94,9 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItemFromHotbar(int amount)
     {
-        int id = playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().slotID;
-        Debug.Log(id);
+        int id = playerHotbarSlots[Mathf.Abs((int)scrollWheel)].gameObject.GetComponent<Slot>().slotID;
 
-        RemoveItem(playerHotbarSlots[(int)scrollWheel].gameObject.GetComponent<Slot>().item, amount, id);
+        RemoveItem(slots[id].gameObject.GetComponent<Slot>().item, amount, id);
     }
 
     void InitializeInventory()
@@ -355,7 +354,10 @@ public class InventoryManager : MonoBehaviour
                 if(currentSlot.amount == 0 && currentHotBarSlot.amount != 0)
                     currentSlot.SetItem(currentHotBarSlot.item, currentHotBarSlot.amount);
                 else if(currentSlot.amount != 0 && currentHotBarSlot.amount != 0)
+                {
                     currentSlot.amount = currentHotBarSlot.amount;
+                    currentSlot.currentAmountText.text = currentSlot.amount.ToString();
+                }
                 else if(currentSlot.amount != 0 && currentHotBarSlot.amount == 0)
                     currentSlot.DeleteItem();
             }

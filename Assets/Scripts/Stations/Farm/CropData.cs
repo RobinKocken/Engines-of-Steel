@@ -6,6 +6,7 @@ using UnityEngine;
 public class CropData : ScriptableObject
 {
     public Item item;
+    public int CropID;
     public GameObject[] GrowthStages;
     public int timeToGrow;
     
