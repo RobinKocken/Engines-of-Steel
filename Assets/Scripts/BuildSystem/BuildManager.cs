@@ -14,7 +14,7 @@ public class BuildManager : MonoBehaviour
     public Transform buildParent;
     public Transform baseParent;
 
-    [SerializeField] private LayerMask layerMask;
+    public LayerMask layerMask;
     [Header("Objects")]
     public GameObject[] objects;
     public GameObject pendingObj;
@@ -105,6 +105,10 @@ public class BuildManager : MonoBehaviour
                     {
                         Debug.Log(component);
                         SelectObject(component.buildingID);
+
+                    }
+                    if(component == null)
+                    {
 
                     }
                 }
