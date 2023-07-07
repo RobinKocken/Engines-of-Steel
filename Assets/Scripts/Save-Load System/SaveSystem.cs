@@ -30,17 +30,18 @@ public class SaveSystem : MonoBehaviour
     {
         path = Application.dataPath + "/DataXml.data";
 
-        if (instance)
-        {
-            Destroy(instance.gameObject);
-        }
-        instance = this;
+        //if (instance)
+        //{
+        //    Destroy(instance.gameObject);
+        //}
+        //instance = this;
+
         if (File.Exists(path))
         {
             dataSlots = Load();
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
     }
     public void Save(int _saveIndex)
