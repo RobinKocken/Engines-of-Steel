@@ -41,7 +41,7 @@ public class Compass : MonoBehaviour
                 questIcons.RemoveAt(i);
             }
         }
-
+        
         foreach(QuestMarker marker in questMarkers)
         {
             marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
