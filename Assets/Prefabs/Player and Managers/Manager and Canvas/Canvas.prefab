@@ -15963,6 +15963,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 852801858360905351}
+        m_TargetAssemblyTypeName: SFXPlay, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2866589462893171355
 GameObject:
   m_ObjectHideFlags: 0
@@ -20226,7 +20238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2979245232378899819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27456,6 +27468,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 852801858360905351}
+        m_TargetAssemblyTypeName: SFXPlay, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5249139457529230551
 GameObject:
   m_ObjectHideFlags: 0
@@ -28831,6 +28855,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6442df7471499be41a0ee647aa8cbb3f, type: 2}
   - {fileID: 11400000, guid: eed4b184025199b42a7a99d1040dd9aa, type: 2}
   - {fileID: 11400000, guid: 660e8b71ca9a11c4f87b9b634e3ac1d9, type: 2}
+  - {fileID: 11400000, guid: 141d60fd08b8a0947a1a64465712e7b7, type: 2}
+  - {fileID: 11400000, guid: 1ec9940ef25b1ac498a999d9ba95a451, type: 2}
+  - {fileID: 11400000, guid: 54e85cb743575c945a54a3728e927fbe, type: 2}
   selectedSlot: {fileID: 0}
   inventorySlotHolder: {fileID: 5321287674920411829}
   hotbarSlotHolder: {fileID: 5321287675108206995}
@@ -29057,7 +29084,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5013363318508476163, guid: 9551955ae31722045a50350a05ee5268,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 4ef188c674810954699a2248ff6eaf30, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -33867,6 +33894,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 852801858360905351}
+        m_TargetAssemblyTypeName: SFXPlay, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6359767794017219303
 GameObject:
   m_ObjectHideFlags: 0
@@ -34675,6 +34714,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 852801858360905351}
+        m_TargetAssemblyTypeName: SFXPlay, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -44482,6 +44533,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5321287673582811920}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 852801858360905351}
+        m_TargetAssemblyTypeName: SFXPlay, Assembly-CSharp
+        m_MethodName: ButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
