@@ -17,33 +17,38 @@ public class CheckPlacement : MonoBehaviour
         buildManager.canPlace = true;
     }
     //If the Object colides with another object, make it unable to be placed
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-        if (other.gameObject.TryGetComponent(out CheckPlacement check)) 
-        {
-            if(check != null)
-            {
-                buildManager.canPlace = false;
-            }
-        }    
-    }
-    //If the Object does not colide with another object, make it able to be placed
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log(other.name);
-        if (other.gameObject.TryGetComponent(out CheckPlacement check))
-        {
-            if (check != null)
-            {
-                buildManager.canPlace = true;
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //    if (collision.gameObject.TryGetComponent(out CheckPlacement check))
+    //    {
+    //        if (check != null)
+    //        {
+    //            if (check.buildingID != 4)
+    //            {
+    //                buildManager.canPlace = false;
+    //            }
+    //        }
+    //    }
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //    if (collision.gameObject.TryGetComponent(out CheckPlacement check))
+    //    {
+    //        if (check == null)
+    //        {
+    //            buildManager.canPlace = true;
+    //        }
+    //    }
+    //}
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        Debug.Log(collision.gameObject.name);
+        buildManager.canPlace = true;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
         if (collision.gameObject.TryGetComponent(out CheckPlacement check))
         {
             if (check != null)
@@ -52,17 +57,6 @@ public class CheckPlacement : MonoBehaviour
                 {
                     buildManager.canPlace = false;
                 }
-            }
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.TryGetComponent(out CheckPlacement check))
-        {
-            if (check == null)
-            {
-                buildManager.canPlace = true;
             }
         }
     }
