@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Bench
   maxStack: 32
   icon: {fileID: 21300000, guid: 0fc682c340ea30e4b833b6daa50630da, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 1989676419923909732, guid: e6e67436feadfb94e9596ebc6595dc28, type: 3}

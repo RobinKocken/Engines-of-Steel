@@ -12,9 +12,11 @@ public class BasePickUp : MonoBehaviour
 
     private void Update()
     {
-        if(Physics.SphereCast(transform.position, sphereRadius, -transform.up, out RaycastHit itemHit, rayDistance, mask))
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, sphereRadius, mask);
+
+        foreach(var hitCollider in hitColliders)
         {
-            if(itemHit.transform.gameObject.TryGetComponent<ItemPickUp>(out ItemPickUp itemPickUp))
+            if(hitCollider.transform.gameObject.TryGetComponent<ItemPickUp>(out ItemPickUp itemPickUp))
             {
                 inventoryManager.AddItem(itemPickUp.item, itemPickUp.currentAmount, -1);
                 itemPickUp.DestroyItem();

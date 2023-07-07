@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883cd4e2f9e238f40b584e2292affdc3, type: 3}
   m_Name: 44_Berry_Seed
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: 
-  maxStack: 0
+  itemID: 44
+  itemName: Berry Seed
+  maxStack: 32
   icon: {fileID: 0}
   prefab: {fileID: 0}

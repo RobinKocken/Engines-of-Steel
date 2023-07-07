@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Bed
   maxStack: 32
   icon: {fileID: 21300000, guid: 232aba56e42efb74ab45cb5d53fa51e1, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7858957844663975056, guid: 72fe099961b90da48af8bea869199896, type: 3}

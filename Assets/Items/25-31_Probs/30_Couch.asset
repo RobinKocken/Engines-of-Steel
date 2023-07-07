@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Couch
   maxStack: 32
   icon: {fileID: 21300000, guid: ae9754997ebcb17468b2ab9bc15424ed, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 5623935157598819454, guid: 2d6ed9120f8942f488b41de35f7a16a9, type: 3}
