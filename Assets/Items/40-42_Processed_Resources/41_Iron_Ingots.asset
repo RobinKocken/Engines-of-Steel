@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883cd4e2f9e238f40b584e2292affdc3, type: 3}
-  m_Name: 38_Tube
+  m_Name: 41_Iron_Ingots
   m_EditorClassIdentifier: 
-  itemID: 38
-  itemName: Tube
-  maxStack: 16
-  icon: {fileID: 0}
+  itemID: 41
+  itemName: Iron Ingots
+  maxStack: 32
+  icon: {fileID: 21300000, guid: 56f599b37134f3d49a47fbe4c53e246f, type: 3}
   prefab: {fileID: 0}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 883cd4e2f9e238f40b584e2292affdc3, type: 3}
-  m_Name: 43_Plank
+  m_Name: 40_Brick
   m_EditorClassIdentifier: 
-  itemID: 43
-  itemName: Plank
-  maxStack: 35
-  icon: {fileID: 21300000, guid: 1201583c2c33dff46ad449bdeca52016, type: 3}
+  itemID: 40
+  itemName: Brick
+  maxStack: 32
+  icon: {fileID: 21300000, guid: 65ec2bc4375df8947ad19682e616aa2c, type: 3}
   prefab: {fileID: 0}

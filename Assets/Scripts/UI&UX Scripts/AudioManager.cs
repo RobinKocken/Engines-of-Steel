@@ -18,6 +18,13 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DelayStart());        
+    }
+
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(1);
+
         if(mixer == null)
         {
             Debug.Log("Kkr");
@@ -26,7 +33,7 @@ public class AudioManager : MonoBehaviour
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-  
+
     }
 
     void SetMasterVolume(float value)
