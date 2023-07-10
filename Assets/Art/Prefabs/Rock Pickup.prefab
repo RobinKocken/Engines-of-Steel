@@ -159,8 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: eed4b184025199b42a7a99d1040dd9aa, type: 2}
   currentAmount: 15
-  item2: {fileID: 11400000, guid: 6b9482c585c4cbe478aaff3a9e99f8e1, type: 2}
-  currentAmount2: 5
+  item2: {fileID: 11400000, guid: 660e8b71ca9a11c4f87b9b634e3ac1d9, type: 2}
+  currentAmount2: 10
   destroyThisObject: 1
 --- !u!65 &3661916490110510022
 BoxCollider:
